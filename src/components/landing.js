@@ -3,11 +3,12 @@ import logo from '../logo.svg';
 import { useLocation } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function Home() {
-  const { state } = useLocation();
-  const formData = state.formData;
-  const { email, firstname } = formData;
 
   // State variable to track whether the delay is complete
   const [delayComplete, setDelayComplete] = useState(false);
@@ -38,17 +39,21 @@ function Home() {
   return (
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
-      <h1>Welcome to the Home Page {firstname ? firstname : email}</h1>
-      <p>This is the <code>Home</code> page</p>
-      <navigationbar />
-      <a
-        className="App-link"
-        href="about"
-        target="_self"
-        rel="noopener noreferrer"
-      >
-        Go to About Page
-      </a>
+      <h1>CREATE YOUR OWN WISHLIST!</h1>
+      <Form className='justify-content-end'>
+            <Row>
+            <Col xs="auto">
+                <Form.Control
+                type="text"
+                placeholder="Search for discounted products!"
+                className=" mr-sm-2"
+                />
+            </Col>
+            <Col xs="auto">
+                <Button type="submit">Search</Button>
+            </Col>
+            </Row>
+        </Form>
     </header>
   );
 }

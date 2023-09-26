@@ -1,8 +1,9 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import Register from './layouts/registerlayout';
-import Main from './layouts/mainlayout';
+import Landing from './layouts/landinglayout';
 import About from './layouts/aboutlayout';
+import Home from './layouts/homelayout';
 import {Routes, Route} from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -10,7 +11,7 @@ import { SkeletonTheme } from "react-loading-skeleton";
 
 function App() {
   
-  // Create a loading skeleton for the Home page
+  // Create a loading skeleton for the Landing page
   const loadingSkeleton = (
     <div className="loading-skeleton">
       <Skeleton height={30} width={300} />
@@ -24,9 +25,10 @@ function App() {
   <div className="App container-fluid d-flex flex-column">
     <SkeletonTheme baseColor="#D2D4DB" highlightColor="#F9FAFC">
     <Routes> 
-        <Route path="/" element={<Register/>} />
+        <Route path="/register" element={<Register/>} />
         <Route path="/about" element={<About/>} />
-        <Route path="/home" element={<Main/>} />
+        <Route path="/" element={<Landing/>} />
+        <Route path="/home" element={<Home/>} />
     </Routes>
     </SkeletonTheme>
   </div>
