@@ -7,7 +7,6 @@ function MainLayout() {
     <div className="App-header">
      <NavBar />
      <Card />
-     <Footer/>
     </div>
   );
 }

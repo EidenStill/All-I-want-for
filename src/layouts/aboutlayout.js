@@ -7,7 +7,7 @@ function MainLayout() {
     <div className="App">
      <NavBar />
      <About />
-     <Footer />
+     
     </div>
   );
 }
