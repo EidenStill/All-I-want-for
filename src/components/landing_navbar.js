@@ -13,13 +13,14 @@ function NavBar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary navbar">
       <Container>
-        <Navbar.Brand href="#home">All I Want For (placeholder for logo)</Navbar.Brand>
+        <Navbar.Brand href="#home"></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end'>
           <Nav className="me-auto">
-            <Nav.Link href="about">About</Nav.Link>
+            
           </Nav>
         <Nav className='justify-content-end'>
+        <Nav.Link href="about">About</Nav.Link>
         <Nav.Link href="register">Sign Up</Nav.Link>
         </Nav>
         </Navbar.Collapse>

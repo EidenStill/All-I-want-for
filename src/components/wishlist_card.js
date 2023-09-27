@@ -7,13 +7,11 @@ function Card() {
     <div className="card-container">
         {userData.map((item) => (
             <div className='card'>
-                <div className="card-body">
-                    <img src="" alt="Card" />
+                <img src={item.image} alt={item.product} className='card-img' />                    
                     <div key={item.id}>
                         <h4>{item.product}</h4>
                         <p>{item.content}</p>
                     </div>
-                </div>
             </div>
         ))}   
       </div> 

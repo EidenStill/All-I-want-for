@@ -12,7 +12,7 @@ function NavBar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">Reponte First React :0</Navbar.Brand>
+        <Navbar.Brand href="#home">All I Want For (placeholder for logo)</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end'>
           <Nav className="me-auto">

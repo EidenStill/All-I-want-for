@@ -1,4 +1,6 @@
 .card{
+    display: flex; /* Use flex display for the card */
+    align-items: center; /* Center items vertically within the card */
     margin: 30px;
     width: 45vh;
     height: 200px;
@@ -8,10 +10,24 @@
 }
 
 .card-container {
+  position: fixed;
+    flex-grow: 1; /* Allow content to grow and take available space */
+  padding: 10px; /* Add padding to separate content from the image */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap; /* Allows cards to wrap to the next column when there's not enough horizontal space */
     align-content: flex-start; /* Align content to the top of each column */
+    overflow-y: auto; /* Enable vertical scrolling when content overflows */
+    max-height: 500px; /* Set a maximum height for the scrollable div */
+    width: 65%;
+    left: 35%; /* Set the left position to the same width as the left div */
+}
+
+.card-img{
+    max-width: 70px; /* Set the maximum width */
+  max-height: 70px; /* Set the maximum height */
+  width: auto; /* Allow the width to adjust based on the aspect ratio */
+  height: auto; /* Allow the height to adjust based on the aspect ratio */
 }
 
 

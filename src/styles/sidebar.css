@@ -1,0 +1,7 @@
+ .sidebar{
+    position: fixed;
+    left: 0; /* Align it to the left side of the screen */
+    height: 100%; /* Make it cover the full height of the screen */
+    width: 35%; /* Set the width to take up 50% of the screen width */
+    background-color: #3a4e28; /* Add background color for visibility */
+}

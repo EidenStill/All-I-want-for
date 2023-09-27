@@ -1,11 +1,13 @@
 [  
   {
     "id" : "0",
+    "image" : "/images/KeychronQ1Pro.jpg",
     "product": "Logitech G Pro Wireless",
     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
     "id" : "1",
+    "image" : "/images/LogitechGProWireless.jpg",
     "product": "Keychron Q1 Pro",
     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
@@ -21,6 +23,21 @@
   },
   {
     "id": "5",
+    "product": "Another Product",
+    "content": "Another description."
+  },
+  {
+    "id": "6",
+    "product": "Another Product",
+    "content": "Another description."
+  },
+  {
+    "id": "7",
+    "product": "Another Product",
+    "content": "Another description."
+  },
+  {
+    "id": "8",
     "product": "Another Product",
     "content": "Another description."
   }
