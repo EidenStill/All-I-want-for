@@ -9,8 +9,7 @@ function Card() {
             <div className='card'>
                 <img src={item.image} alt={item.product} className='card-img' />                    
                     <div key={item.id}>
-                        <h4>{item.product}</h4>
-                        <p>{item.content}</p>
+                        <h4 className='text-wrap'>{item.product}</h4>
                     </div>
             </div>
         ))}   

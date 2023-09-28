@@ -1,7 +1,14 @@
  .sidebar{
     position: fixed;
-    left: 0; /* Align it to the left side of the screen */
+    /* left: 0; /* Align it to the left side of the screen */
     height: 100%; /* Make it cover the full height of the screen */
-    width: 35%; /* Set the width to take up 50% of the screen width */
+    width: 25%; /* Set the width to take up 50% of the screen width */
     background-color: #3a4e28; /* Add background color for visibility */
 }
+
+ .link{
+    color: black;
+    text-shadow: 2px 2px 5px black;
+    margin: 30px 30px;
+ }
+

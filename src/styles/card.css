@@ -2,7 +2,7 @@
     display: flex; /* Use flex display for the card */
     align-items: center; /* Center items vertically within the card */
     margin: 30px;
-    width: 45vh;
+    width: 35vh;
     height: 200px;
     background-color: rgb(255, 223, 172);
   transition: border-color 0.3s; /* Add a smooth transition for the border color */
@@ -19,8 +19,8 @@
     align-content: flex-start; /* Align content to the top of each column */
     overflow-y: auto; /* Enable vertical scrolling when content overflows */
     max-height: 500px; /* Set a maximum height for the scrollable div */
-    width: 65%;
-    left: 35%; /* Set the left position to the same width as the left div */
+    width: 75%;
+    left: 30%; /*Set the left position to the same width as the left div*/
 }
 
 .card-img{
@@ -28,6 +28,7 @@
   max-height: 70px; /* Set the maximum height */
   width: auto; /* Allow the width to adjust based on the aspect ratio */
   height: auto; /* Allow the height to adjust based on the aspect ratio */
+  margin: 20px 50px;
 }
 
 
