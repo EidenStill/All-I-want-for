@@ -22,7 +22,7 @@ function App() {
   );
   
   return (//routes are displayed here
-  <div className="App container-fluid d-flex flex-column">
+  <div className="App d-flex flex-column">
     <SkeletonTheme baseColor="#D2D4DB" highlightColor="#F9FAFC">
     <Routes> 
         <Route path="/register" element={<Register/>} />

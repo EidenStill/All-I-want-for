@@ -24,6 +24,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
   padding-top: 80px;
+  padding: 20px;
 }
 
 .App-link {
