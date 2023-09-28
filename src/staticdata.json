@@ -3,28 +3,38 @@
     "id" : "0",
     "image" : "/images/KeychronQ1Pro.jpg",
     "product": "Logitech G Pro Wireless",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    "content": "Description",
+    "discount": "Lazada",
+    "expiry": "Soon 2024"
   },
   {
     "id" : "1",
     "image" : "/images/LogitechGProWireless.jpg",
     "product": "Keychron Q1 Pro",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    "content": "Description",
+    "discount": "Lazada",
+    "expiry": "Soon 2024"
   },
   {
     "id": "2",
     "product": "Another Product",
-    "content": "Another description."
+    "content": "Description",
+    "discount": "Lazada",
+    "expiry": "Soon 2024"
   },
   {
     "id": "3",
     "product": "Another Product",
-    "content": "Another description."
+    "content": "Description",
+    "discount": "Lazada",
+    "expiry": "Soon 2024"
   },
   {
     "id": "5",
     "product": "Another Product",
-    "content": "Another description."
+    "content": "Description",
+    "discount": "Lazada",
+    "expiry": "Soon 2024"
   },
   {
     "id": "6",

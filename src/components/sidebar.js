@@ -13,6 +13,9 @@ function Sidebar() {
                 <Col>
                     <Nav.Link className="link fs-3" href="about">RECENT</Nav.Link>
                 </Col>
+                <Col>
+                    <Nav.Link className="link fs-3" href="about">ADD</Nav.Link>
+                </Col>
           </Nav>
         </div>
     );

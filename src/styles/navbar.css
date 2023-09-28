@@ -7,6 +7,8 @@
     top: 0; /* Stick it to the top of the viewport */
     width: 100%; /* Make it span the full width of the viewport */
     z-index: 100; /* Optional: Add a higher z-index to make sure it's on top of other elements */
+    border:solid 1px black;
+    background-color: #B0B0B0
   }
   
   .nav-list {

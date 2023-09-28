@@ -3,6 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import '../styles/navbar.css'; 
 
 function LandingNavBar() {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
@@ -31,9 +32,17 @@ function LandingNavBar() {
 
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary navbar">
-        <Container>
-          <Navbar.Brand href="#home"> Home</Navbar.Brand>
+      <Navbar expand="lg" className=" bg-body-tertiary navbar">
+        <Container class="custom-navbar">
+          <Navbar.Brand>
+          <img
+              src="/images/Logo.png"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+              alt="React Bootstrap logo"
+            />
+          </Navbar.Brand>
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
             onClick={handleShowOffcanvas}
@@ -41,8 +50,8 @@ function LandingNavBar() {
           />
           {showNavLinks && ( // Only display "About" and "Sign Up" on larger screens
             <Nav className="me-auto">
-              <Nav.Link href="#action1">About</Nav.Link>
-              <Nav.Link href="#action2">Sign Up</Nav.Link>
+              <Nav.Link href="about">About</Nav.Link>
+              <Nav.Link href="register">Sign Up</Nav.Link>
             </Nav>
           )}
         </Container>

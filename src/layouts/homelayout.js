@@ -8,8 +8,9 @@ import Col from 'react-bootstrap/Col';
 
 function Home() {
   return (
-    <div className="home" style={{ paddingTop : '80px'}}>
+    <div className="home" >
      <NavBar />
+     <div style={{ paddingTop : '80px'}}>
      <Row className="justify-content-md-center">
       <Col>
      <Sidebar />
@@ -18,6 +19,7 @@ function Home() {
      <Card />
      </Col>
      </Row>
+     </div>
     </div>
   );
 }

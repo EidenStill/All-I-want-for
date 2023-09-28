@@ -3,7 +3,9 @@
     align-items: center; /* Center items vertically within the card */
     margin: 30px;
     width: 35vh;
-    height: 200px;
+    height: 270px;
+    flex-wrap: nowrap; 
+    padding-left:10px ;
     background-color: rgb(255, 223, 172);
   transition: border-color 0.3s; /* Add a smooth transition for the border color */
   border: 2px solid lightgray; /* Initial border color and width */
@@ -19,8 +21,10 @@
     align-content: flex-start; /* Align content to the top of each column */
     overflow-y: auto; /* Enable vertical scrolling when content overflows */
     max-height: 500px; /* Set a maximum height for the scrollable div */
-    width: 75%;
+    width: 70%;
     left: 30%; /*Set the left position to the same width as the left div*/
+    background-color: #f2f2f2;
+    height: 100vh;
 }
 
 .card-img{

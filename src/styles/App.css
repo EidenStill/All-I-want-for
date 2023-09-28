@@ -4,7 +4,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 300px;
   pointer-events: none;
 }
 
@@ -15,16 +15,16 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #f2f2f2;
+  min-height: 92vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
   padding-top: 80px;
-  padding: 20px;
+  border: solid 1px black;
 }
 
 .App-link {
@@ -38,4 +38,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.home {
+  background-color: #f2f2f2;
+  border: solid 1px black;
 }
