@@ -9,8 +9,7 @@ function Card() {
   const [searchInput, setSearchInput] = useState('');
   const [filteredResults, setFilteredResults] = useState([]);
   const searchItems = (searchValues) => {
-    console.log(searchValues);
-    setSearchInput(searchValues)
+    setSearchInput(searchValues);
     const filteredData = userData.filter((item) => {
       // Access the "product" field of the current item and convert it to lowercase
       const product = item.product.toLowerCase();
@@ -18,14 +17,13 @@ function Card() {
       // Check if the product contains the lowercase search input
       return product.includes(searchInput.toLowerCase()); 
     })
-    console.log(filteredData); 
     setFilteredResults(filteredData);
   }
   
 
   return ( 
-    <div>
-    <Form className='justify-content-end home'>
+    <div className='mylist-container'>
+      <Form className='justify-content-center' style={{padding:'20px 40px 20px', borderBottomColor:'black'}}>
             <Row>
             <Col xs="auto">
                 <Form.Control
@@ -33,11 +31,11 @@ function Card() {
                 type="text"
                 placeholder="Search..."
                 className=" mr-sm-2"
-                onChange={(e) => searchItems(e.target.value)}
+                onSubmit = {(e) => searchItems(e.target.value)}
                 />
             </Col>
             </Row>
-            </Form>
+      </Form>
         <div className="card-container">
         {searchInput.length > 1 ? (
                     filteredResults.map((item) => {

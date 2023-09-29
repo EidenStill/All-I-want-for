@@ -8,13 +8,13 @@ function Sidebar() {
         <div className="sidebar">
             <Nav className="me-auto flex-column">
                 <Col>
-                    <Nav.Link className="link fs-3" href="home">MY LIST</Nav.Link>
+                    <Nav.Link className="link fs-5" href="home">MY LIST</Nav.Link>
                 </Col>
                 <Col>
-                    <Nav.Link className="link fs-3" href="about">RECENT</Nav.Link>
+                    <Nav.Link className="link fs-5" href="about">RECENT</Nav.Link>
                 </Col>
                 <Col>
-                    <Nav.Link className="link fs-3" href="about">ADD</Nav.Link>
+                    <Nav.Link className="link fs-5" href="about">ADD</Nav.Link>
                 </Col>
           </Nav>
         </div>
