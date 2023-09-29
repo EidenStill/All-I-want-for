@@ -1,7 +1,7 @@
 [  
   {
     "id" : "0",
-    "image" : "/images/KeychronQ1Pro.jpg",
+    "image" : "/images/LogitechGProWireless.jpg",
     "product": "Logitech G Pro Wireless",
     "content": "Description",
     "discount": "Lazada",
@@ -9,7 +9,7 @@
   },
   {
     "id" : "1",
-    "image" : "/images/LogitechGProWireless.jpg",
+    "image" : "/images/KeychronQ1Pro.jpg",
     "product": "Keychron Q1 Pro",
     "content": "Description",
     "discount": "Lazada",

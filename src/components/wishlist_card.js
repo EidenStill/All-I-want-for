@@ -17,7 +17,7 @@ function Card() {
       // Check if the product contains the lowercase search input
       return product.includes(searchInput.toLowerCase()); 
     })
-    setFilteredResults(filteredData);
+    setFilteredResults(filteredData); 
   }
   
 
@@ -28,10 +28,10 @@ function Card() {
             <Col xs="auto">
                 <Form.Control
                 icon='search'
-                type="text"
+                type="textitem"
                 placeholder="Search..."
                 className=" mr-sm-2"
-                onSubmit = {(e) => searchItems(e.target.value)}
+                onChange = {(e) => searchItems(e.target.value)}
                 />
             </Col>
             </Row>
@@ -41,19 +41,12 @@ function Card() {
                     filteredResults.map((item) => {
                       return (
                         <div className='card'>
-                            <img src={item.image} alt={item.product} className='card-img' />                    
-                                <div key={item.id}>
-                                    <h4 className='text-wrap'>{item.product}</h4>
-                                </div>
-                                <div >
-                                    <p className='text-wrap'>{item.content}</p>
-                                </div>
-                                <div >
-                                    <h5 className='text-wrap'>{item.discount}</h5>
-                                </div>
-                                <div >
-                                    <h5 className='text-wrap'>{item.expiry}</h5>
-                                </div>
+                            <img src={item.image} alt={item.product} className='card-img' />  
+                            <div key={item.id}>                  
+                            <h4 className='textitem'>
+                              {item.product}
+                            </h4>
+                            </div>
                         </div> 
                       );
                     })
@@ -62,18 +55,8 @@ function Card() {
                         <div className='card'>
                             <img src={item.image} alt={item.product} className='card-img' />                    
                             <div key={item.id}>
-                                    <h4 className='text-wrap'>{item.product}</h4>
+                                    <h4 className='textitem'>{item.product}</h4>
                                 </div>
-                                <div >
-                                    <p className='text-wrap'>{item.content}</p>
-                                </div>
-                                <div >
-                                    <h5 className='text-wrap'>{item.discount}</h5>
-                                </div>
-                                <div >
-                                    <h5 className='text-wrap'>{item.expiry}</h5>
-                                </div>
-                                
                         </div>              
                     ))  
                       
