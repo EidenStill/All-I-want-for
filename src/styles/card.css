@@ -10,6 +10,18 @@
   transition: border-color 0.3s; /* Add a smooth transition for the border color */
 }
 
+.textitem {
+  width: 35vh;
+  display: -webkit-box;
+      -webkit-line-clamp: var(--line-clamp, 1);
+      -webkit-box-orient: vertical;
+      word-break: var(--word-break, 'none');
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
 .card > img {
   width: auto;
   height: auto;
@@ -23,7 +35,6 @@
 }
 
 .mylist-container {
-  object-fit: cover;
   position: fixed;
   max-height: 700px; /* Set a maximum height for the scrollable div */
   background-color: #f2f2f2;
