@@ -6,7 +6,7 @@
   height: 270px;
   flex-wrap: nowrap; 
   background-color: #f2f2f2;
-  border: none;
+  border-color: #f2f2f2;
   transition: border-color 0.3s; /* Add a smooth transition for the border color */
 }
 
@@ -32,6 +32,7 @@
   background-size:cover;
     background-position:50% 50%;
     overflow: hidden;
+  border-radius: 5%;
 }
 
 .mylist-container {
@@ -56,6 +57,7 @@
 
 /* Add hover styles */
 .card:hover {
-  border-color: rgb(0, 0, 0); /* Darken the border color on hover */
-  background-color: rgb(194, 156, 94);
+  border-color: #ffa217;
+  border-width: 5px;
+  border-radius: 5%;
 }
