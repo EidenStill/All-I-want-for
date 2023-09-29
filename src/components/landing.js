@@ -8,11 +8,14 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import '../styles/form.css';
+import userData from '../staticdata.json';
 
 function Home() {
 
   // State variable to track whether the delay is complete
   // const [delayComplete, setDelayComplete] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
+  const [filteredResults, setFilteredResults] = useState([]);
 
   // // Simulate a 5-second delay before showing content
   // useEffect(() => {
@@ -36,6 +39,19 @@ function Home() {
   //   );
   // }
 
+  const searchDiscounts = (searchValues) => {
+    console.log(searchValues);
+    setSearchInput(searchValues);
+    const filteredData = userData.filter((item) => {
+      // Access the "product" field of the current item and convert it to lowercase
+      const product = item.product.toLowerCase();
+        
+      // Check if the product contains the lowercase search input
+      return product.includes(searchInput.toLowerCase()); 
+    }) 
+    console.log(filteredData); 
+  }
+
   // After the delay, display the content
   return (
     <header className="App-header">
@@ -48,6 +64,7 @@ function Home() {
           placeholder="Search for discounted products!"
           className="mr-sm-2"
           style={{ width: '100%', height: '50px', flex: 1 }} 
+          onChange = {(e) => searchDiscounts(e.target.value)}
         />
       </Col>
       <Col xs="auto"> {/* Changed xs="3" to xs="auto" */}
@@ -57,7 +74,6 @@ function Home() {
       </Col>
     </Row>
   </Form>
-
 
 
 
