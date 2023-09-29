@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import '../styles/form.css';
+import '../styles/images.css';
 import userData from '../staticdata.json';
 
 function Home() {
@@ -56,9 +57,9 @@ function Home() {
   return (
     <header className="App-header">
 
-  <Form className="justify-content-center" style={{ width: '100%' }}>
+  <Form className="justify-content-center" style={{ width: '80%' }}>
     <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <Col xs="4"> {/* Changed  to xs="auto" */}
+      <Col xs="5"> {/* Changed  to xs="auto" */}
         <Form.Control
           type="text"
           placeholder="Search for discounted products!"
@@ -75,28 +76,48 @@ function Home() {
     </Row>
   </Form>
 
-
+<div> 
 
         <br/>
       <h1>Creat Your Own Shopping Wishlist!</h1>
       <p>Add items to your Wishlist and be notified of any discounts!</p>
+
+<div className='landbod'>
       <Row>
-      <Col>
-      <img src={'/images/add.png'} className="App-logo" alt="logo" />
+  <div className="design-image">
+    <img src={'/images/6.png'} alt="Design 2" className="side-image" />
+  </div>
+  
+  <Col className="centered-col">
+    <div className="image-container">
+      <img src={'/images/basket.png'} className="App-logo" alt="logo" />
       <p>ADD</p>
-      </Col>
-      <Col>
-      <img src={'/images/discover.png'} className="App-logo" alt="logo" />
+    </div>
+  </Col>
+  <Col className="centered-col">
+    <div className="image-container">
+      <img src={'/images/search.png'} className="App-logo" alt="logo" />
       <p>DISCOVER</p>
-      </Col>
-      <Col>
-      <img src={'/images/updated.png'} className="App-logo" alt="logo" />
+    </div>
+  </Col>
+  <Col className="centered-col">
+    <div className="image-container">
+      <img src={'/images/notif.png'} className="App-logo" alt="logo" />
       <p>UPDATED</p>
-      </Col>
-      </Row>
-      
-        <Button href='/register'>CREATE YOUR WISHLIST NOW!</Button>
+    </div>
+  </Col>
+  <div className="design-image">
+    <img src={'/images/3.png'} alt="Design 3" className="side-image" />
+  </div> 
+  
+</Row>
+</div>
+        <Button href='/register' className="btn-lg">CREATE YOUR WISHLIST NOW!</Button>
+
+ </div>
     </header>
+
+  
   );
 }
 

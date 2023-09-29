@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import '../styles/navbar.css'; 
+import React, { useState, useEffect } from "react";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import "../styles/navbar.css";
+import { Link } from "react-router-dom";
 
 function LandingNavBar() {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
@@ -24,9 +25,9 @@ function LandingNavBar() {
   };
 
   useEffect(() => {
-    window.addEventListener('resize', handleWindowResize);
+    window.addEventListener("resize", handleWindowResize);
     return () => {
-      window.removeEventListener('resize', handleWindowResize);
+      window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
 
@@ -35,14 +36,17 @@ function LandingNavBar() {
       <Navbar expand="lg" className=" bg-body-tertiary navbar">
         <Container class="custom-navbar">
           <Navbar.Brand>
-          <img
-              src="/images/Logo.png"
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-              alt="React Bootstrap logo"
-            />
+            <Link to="/">
+              <img
+                src="/images/Logo.png"
+                width="30"
+                height="30"
+                className="d-inline-block align-top"
+                alt="React Bootstrap logo"
+              />
+            </Link>
           </Navbar.Brand>
+
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
             onClick={handleShowOffcanvas}
@@ -66,7 +70,7 @@ function LandingNavBar() {
           <Offcanvas.Title>Menu</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <Nav.Link href="about">About</Nav.Link>
             <Nav.Link href="register">Sign Up</Nav.Link>
           </div>
