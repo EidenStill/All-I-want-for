@@ -33,33 +33,35 @@ function LandingNavBar() {
 
   return (
     <>
-      <Navbar expand="lg" className=" bg-body-tertiary navbar">
-        <Container class="custom-navbar">
-          <Navbar.Brand>
-            <Link to="/">
-              <img
-                src="/images/Logo.png"
-                width="30"
-                height="30"
-                className="d-inline-block align-top"
-                alt="React Bootstrap logo"
-              />
-            </Link>
-          </Navbar.Brand>
+<Navbar expand="lg" className="bg-body-tertiary navbar">
+  <Container class="custom-navbar">
+    <Navbar.Brand>
+      <Link to="/">
+        <img
+          src="/images/Logo.png"
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+          alt="React Bootstrap logo"
+        />
+      </Link>
+    </Navbar.Brand>
 
-          <Navbar.Toggle
-            aria-controls="basic-navbar-nav"
-            onClick={handleShowOffcanvas}
-            className="ms-auto"
-          />
-          {showNavLinks && ( // Only display "About" and "Sign Up" on larger screens
-            <Nav className="me-auto">
-              <Nav.Link href="about">About</Nav.Link>
-              <Nav.Link href="register">Sign Up</Nav.Link>
-            </Nav>
-          )}
-        </Container>
-      </Navbar>
+    <Navbar.Toggle
+      aria-controls="basic-navbar-nav"
+      onClick={handleShowOffcanvas}
+    />
+
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="ms-auto">
+        <Nav.Link href="about">About</Nav.Link>
+        <Nav.Link href="register">Sign Up</Nav.Link>
+      </Nav>
+    </Navbar.Collapse>
+  </Container>
+</Navbar>
+
+
 
       <Offcanvas
         show={showOffcanvas}
