@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import '../styles/form.css';
 
 function Home() {
 
@@ -38,21 +39,26 @@ function Home() {
   // After the delay, display the content
   return (
     <header className="App-header">
-     <Form className='justify-content-end'>
-  <Row>
-    <Col xs="8">
-      <Form.Control
-        type="text"
-        placeholder="Search for discounted products!"
-        className="mr-sm-2"
-        style={{ width: '100%', height: '50px' }}
-      />
-    </Col>
-    <Col xs="4">
-      <Button type="submit" className="btn-lg">Search</Button> {/* Added btn-lg class for larger button */}
-    </Col>
-  </Row>
-</Form>
+
+  <Form className="justify-content-center" style={{ width: '100%' }}>
+    <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Col xs="4"> {/* Changed  to xs="auto" */}
+        <Form.Control
+          type="text"
+          placeholder="Search for discounted products!"
+          className="mr-sm-2"
+          style={{ width: '100%', height: '50px', flex: 1 }} 
+        />
+      </Col>
+      <Col xs="auto"> {/* Changed xs="3" to xs="auto" */}
+        <Button type="submit" className="btn-lg">
+          Search
+        </Button>
+      </Col>
+    </Row>
+  </Form>
+
+
 
 
         <br/>

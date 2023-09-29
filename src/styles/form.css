@@ -1,0 +1,14 @@
+.field{
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    
+}
+
+.btn-lg {
+    background-color: #6691ff;
+    /* You can also set other styles like text color, border, etc. as needed */
+    color: #fff; /* Text color (white in this case) */
+    border: none; /* Remove the button border if desired */
+  }
+  
