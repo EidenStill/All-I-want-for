@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import {Col, Row} from 'react-bootstrap';
+import {Col, Navbar, Row, Image} from 'react-bootstrap';
 import * as yup from 'yup';
 import { useFormik} from 'formik';
 import { useNavigate } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-
+import '../styles/images.css';
 function Register() {
     const navigate = useNavigate();
 
@@ -36,6 +36,7 @@ function Register() {
     validateOnBlur: true,
   });
 
+  
 
   const OnSubmit = (event) => {
     event.preventDefault();
@@ -62,53 +63,61 @@ function Register() {
   }
 
   // State variable to track whether the delay is complete
-  const [delayComplete, setDelayComplete] = useState(false);
+  // const [delayComplete, setDelayComplete] = useState(false);
 
-  // Simulate a 5-second delay before showing content
-  useEffect(() => {
-    const delayTimer = setTimeout(() => {
-      setDelayComplete(true);
-    }, 4000);
+  // // Simulate a 5-second delay before showing content
+  // useEffect(() => {
+  //   const delayTimer = setTimeout(() => {
+  //     setDelayComplete(true);
+  //   }, 4000);
 
-    // Clean up the timer if the component unmounts
-    return () => clearTimeout(delayTimer);
-  }, []);
+  //   // Clean up the timer if the component unmounts
+  //   return () => clearTimeout(delayTimer);
+  // }, []);
 
-  // Render loading skeleton during the delay
-  if (!delayComplete) {
-    return (
-      <header className="App-header">
-        <Skeleton height={60} width={600} /> <br/>
-        <div className="d-flex flex-column flex-grow-1 signup-container">
-          <div className="d-flex flex-row">
-            <div className="left-column" style={{marginRight: '20px', width: '60%'}}> 
-              <Skeleton height={40} width={400} /> <br/>
-              <Skeleton height={40} width={400} /> <br/>
-              <Skeleton height={40} width={400} /> <br/>
-              <Skeleton height={40} width={400} /> <br/>
-              <Skeleton height={40} width={400} /> <br/>
-              <Skeleton height={40} width={400} /> <br/>
-            </div>
-            <div className="right-column"> 
-              <Skeleton height={40} width={400} /> <br/>
-              <Skeleton height={40} width={400} /> <br/>
-              <Skeleton height={40} width={100} /> <br/>
-            </div>
-          </div>
-        </div>
-      </header>
-    );
-  }
+  // // Render loading skeleton during the delay
+  // if (!delayComplete) {
+  //   return (
+  //     <header className="App-header">
+  //       <Skeleton height={60} width={600} /> <br/>
+  //       <div className="d-flex flex-column flex-grow-1 signup-container">
+  //         <div className="d-flex flex-row">
+  //           <div className="left-column" style={{marginRight: '20px', width: '60%'}}> 
+  //             <Skeleton height={40} width={400} /> <br/>
+  //             <Skeleton height={40} width={400} /> <br/>
+  //             <Skeleton height={40} width={400} /> <br/>
+  //             <Skeleton height={40} width={400} /> <br/>
+  //             <Skeleton height={40} width={400} /> <br/>
+  //             <Skeleton height={40} width={400} /> <br/>
+  //           </div>
+  //           <div className="right-column"> 
+  //             <Skeleton height={40} width={400} /> <br/>
+  //             <Skeleton height={40} width={400} /> <br/>
+  //             <Skeleton height={40} width={100} /> <br/>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </header>
+  //   );
+  //  }
 
     return (
     //The 8 input fields
     <div className="d-flex flex-column flex-grow-1 signup-container">
-      <h1>Welcome to the Sign Up Page</h1>
+      <div style={{display:"flex",justifyContent:"center"}}>
+        <div className='logo-image' style={{display:"flex", justifyContent:"center"}}>
+        <Navbar.Brand>
+          <img src="../images/Aliwant.png" />
+        </Navbar.Brand>
+      </div>
+      </div>
+      
+      <h2>Welcome to the Sign Up Page</h2>
       <br/>
       <Form onSubmit={OnSubmit}>
-      <div className="d-flex flex-row">
-      <div className="left-column" style={{marginRight: '20px', width: '60%'}}> 
-        
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', padding:'30px' }}>
+      <div  style={{ margin:'10px'}}>
+
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control 
@@ -159,7 +168,10 @@ function Register() {
           ) : null}
           </Form.Text>  
         </Form.Group>
+        </div>
 
+
+        <div  style={{ margin:'10px'}}>
         <Form.Group className="mb-3" controlId="formFirstName">
           <Form.Label>First Name</Form.Label>
           <Form.Control type="text"
@@ -187,26 +199,9 @@ function Register() {
             />
           </Form.Group>
         </div>
-
-        <div className="right-column">
-          <Form.Group className="mb-3" controlId="formHobby">
-            <Form.Label>Hobbies</Form.Label>
-            <Form.Control type="text" 
-            name="hobbies" 
-            value={formik.values.hobbies}
-            onChange={formik.handleChange}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formExtra2">
-            <Form.Label>Extra 2</Form.Label>
-            <Form.Control type="text" 
-            name="extra2" 
-            value={formik.values.extra2}
-            onChange={formik.handleChange}
-            />
-          </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox"> 
+      </div>
+      <div className='field'>
+          <Form.Group className="mb-3" controlId="formBasicCheckbox"> 
         <Form.Check type="checkbox" label="I agree to the Terms and Services" name="tosCheck"
           value={formik.values.tosCheck}
           onChange={formik.handleChange}
@@ -215,11 +210,11 @@ function Register() {
               <div className="error" style={{color: 'red'}}>{formik.errors.tosCheck}</div>
           ) : null}
         </Form.Group>
-        <Button variant="primary" type="submit">
+        </div>
+        <Button variant="primary" type="submit" className='btn-lg'>
           Submit
         </Button>
-        </div>
-      </div>
+        
       </Form>   
     </div>  
     );

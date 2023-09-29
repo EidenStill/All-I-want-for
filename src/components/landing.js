@@ -3,10 +3,9 @@ import logo from '../logo.svg';
 import { useLocation } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Col, Navbar, Row, Image } from 'react-bootstrap';
 import '../styles/form.css';
 import '../styles/images.css';
 import userData from '../staticdata.json';
@@ -56,7 +55,13 @@ function Home() {
   // After the delay, display the content
   return (
     <header className="App-header">
-
+<div style={{ display: "flex", justifyContent: "center" }}>
+        <div className='logo-image' style={{ display: "flex", justifyContent: "center" }}>
+          <Navbar.Brand>
+            <img src="../images/Aliwant.png" />
+          </Navbar.Brand>
+        </div>
+      </div>
   <Form className="justify-content-center" style={{ width: '80%' }}>
     <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Col xs="5"> {/* Changed  to xs="auto" */}
