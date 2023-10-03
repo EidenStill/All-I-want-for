@@ -55,7 +55,7 @@ function Card() {
                         <div className='card'>
                             <img src={item.image} alt={item.product} className='card-img' />                    
                             <div className='text-container' key={item.id}>
-                            <h5 className='textitem'>{item.product}</h5>
+                            <h6 className='textitem'>{item.product}</h6>
                               <div className='text-container'>                
                                   <p className='textitem'>{item.source}</p>
                                   <p className='textitem'>{item.expiry}</p>

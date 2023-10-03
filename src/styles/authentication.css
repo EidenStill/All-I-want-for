@@ -29,11 +29,19 @@
 }
 
 /* Increase the size of the checkbox */
-.custom-checkbox  {
+.custom-checkbox {
 
-    border: 2px solid #000; /* Darker and thicker border */
-    background-color: grey; /* Fill color when checked */
-    border-radius: 3px; /* Optional: Add rounded corners to the checkbox */
-  } 
+    border: 2px solid #000;
+    /* Darker and thicker border */
+    background-color: grey;
+    /* Fill color when checked */
+    border-radius: 3px;
+    /* Optional: Add rounded corners to the checkbox */
+}
 
-  
+.back-btn {
+    max-width: 250px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

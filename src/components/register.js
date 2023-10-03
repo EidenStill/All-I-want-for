@@ -103,8 +103,14 @@ function Register() {
   //   );
   //  }
 
+    const handleClick = () => {
+      navigate(-1);
+    };
+  
+
   return (
     <div className="d-flex flex-column flex-grow-1 signup-page">
+      <Image onClick={handleClick} className='back-btn' src="../images/back1.png" alt="Back"/>
       <div className='signup-container'>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div className='logo-image' style={{ display: "flex", justifyContent: "center" }}>
@@ -113,7 +119,7 @@ function Register() {
           </Navbar.Brand>
         </div>
       </div>
-
+      <h3>Sign Up</h3>
       <br />
       <Form onSubmit={OnSubmit}>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', padding: '30px' }}>
