@@ -3,12 +3,13 @@
     /* left: 0; /* Align it to the left side of the screen */
     height: 100%; /* Make it cover the full height of the screen */
     width: 15%; /* Set the width to take up 50% of the screen width */
-    background-color: #f2f2f2;
+    background: linear-gradient(to bottom, rgba(168, 192, 255, 0.75), rgba(102, 145, 255, 0.25), rgba(242, 242, 242));
+    background-position: 50%;
+    border-right: 1px solid black;
 }
 
  .link{
     color: black;
     text-shadow: 2px 2px 5px black;
-    margin: 10px 10px;
  }
 

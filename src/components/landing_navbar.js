@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import "../styles/navbar.css";
+import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 
 function LandingNavBar() {
@@ -54,15 +55,12 @@ function LandingNavBar() {
 
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ms-auto">
-        <Nav.Link href="about">About</Nav.Link>
-        <Nav.Link href="register">Sign Up</Nav.Link>
+        <Button href="about" className="btn-lg">About</Button>
+        <Button href="register" className="btn-lg">Sign Up</Button>
       </Nav>
     </Navbar.Collapse>
   </Container>
 </Navbar>
-
-
-
       <Offcanvas
         show={showOffcanvas}
         onHide={handleCloseOffcanvas}

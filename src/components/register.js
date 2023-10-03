@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import {Col, Navbar, Row, Image} from 'react-bootstrap';
+import { Col, Navbar, Row, Image } from 'react-bootstrap';
 import * as yup from 'yup';
-import { useFormik} from 'formik';
+import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../styles/images.css';
-function Register() {
-    const navigate = useNavigate();
+import '../styles/authentication.css'
 
-    // This a validation schema using yup
+function Register() {
+  const navigate = useNavigate();
+
+  // This a validation schema using yup
   const validationSchema = yup.object({
     email: yup.string().email('Invalid email format').required('Email is required'),
     password: yup.string().min(8, '8 characters or more').required('Password is required'),
     confirmPassword: yup.string().oneOf([yup.ref("password"), null], "Passwords do not match!"),
-    tosCheck:yup.boolean().oneOf([true], 'You must accept the terms and conditions!'),
+    tosCheck: yup.boolean().oneOf([true], 'You must accept the terms and conditions!'),
   });
 
   // Formik form handling
@@ -36,20 +38,20 @@ function Register() {
     validateOnBlur: true,
   });
 
-  
+
 
   const OnSubmit = (event) => {
     event.preventDefault();
     let formData = {
-            email: event.target[0].value,
-            password: event.target[1].value,
-            confirmPassword: event.target[2].value,
-            firstname: event.target[3].value,
-            middle: event.target[4].value,
-            lastname: event.target[5].value,
-            hobbies: event.target[6].value,
-            extra2: event.target[7].value,
-            tosCheck: event.target[8].checked,
+      email: event.target[0].value,
+      password: event.target[1].value,
+      confirmPassword: event.target[2].value,
+      firstname: event.target[3].value,
+      middle: event.target[4].value,
+      lastname: event.target[5].value,
+      hobbies: event.target[6].value,
+      extra2: event.target[7].value,
+      tosCheck: event.target[8].checked,
     };
     // Use Formik's validate function to validate the form values against the schema
     const isValid = validationSchema.isValidSync(formData);
@@ -101,123 +103,124 @@ function Register() {
   //   );
   //  }
 
-    return (
-    //The 8 input fields
-    <div className="d-flex flex-column flex-grow-1 signup-container">
-      <div style={{display:"flex",justifyContent:"center"}}>
-        <div className='logo-image' style={{display:"flex", justifyContent:"center"}}>
-        <Navbar.Brand>
-          <img src="../images/Aliwant.png" />
-        </Navbar.Brand>
+  return (
+    <div className="d-flex flex-column flex-grow-1 signup-page">
+      <div className='signup-container'>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className='logo-image' style={{ display: "flex", justifyContent: "center" }}>
+          <Navbar.Brand>
+            <img src="../images/Aliwant.png" />
+          </Navbar.Brand>
+        </div>
       </div>
-      </div>
-      
-      <h2>Welcome to the Sign Up Page</h2>
-      <br/>
+
+      <br />
       <Form onSubmit={OnSubmit}>
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', padding:'30px' }}>
-      <div  style={{ margin:'10px'}}>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', padding: '30px' }}>
+          <div style={{ margin: '10px' }}>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control 
-          type="email" 
-          name="email"
-          placeholder="Enter email" 
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          />
-          <Form.Text className="text-muted" >
-          {formik.touched.email && formik.errors.email ? (
-              <div className="error" style={{color: 'red'}}>{formik.errors.email}</div>
-          ) : null}
-          </Form.Text>    
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                placeholder="Enter email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              <Form.Text className="text-muted" >
+                {formik.touched.email && formik.errors.email ? (
+                  <div className="error" style={{ color: 'red' }}>{formik.errors.email}</div>
+                ) : null}
+              </Form.Text>
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control 
-          type="password"
-          name="password" 
-          placeholder="Password" 
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          />
-          <Form.Text className="text-muted" >
-          {formik.touched.password && formik.errors.password ? (
-              <div className="error" style={{color: 'red'}}>{formik.errors.password}</div>
-          ) : null}
-          </Form.Text>  
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              <Form.Text className="text-muted" >
+                {formik.touched.password && formik.errors.password ? (
+                  <div className="error" style={{ color: 'red' }}>{formik.errors.password}</div>
+                ) : null}
+              </Form.Text>
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formConfirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control 
-          type="password"
-          name="confirmPassword" 
-          placeholder="Confirm Password" 
-          value={formik.values.confirmPassword}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          />
-          <Form.Text className="text-muted" >
-          {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-              <div className="error" style={{color: 'red'}}>{formik.errors.confirmPassword}</div>
-          ) : null}
-          </Form.Text>  
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="formConfirmPassword">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                value={formik.values.confirmPassword}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              <Form.Text className="text-muted" >
+                {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+                  <div className="error" style={{ color: 'red' }}>{formik.errors.confirmPassword}</div>
+                ) : null}
+              </Form.Text>
+            </Form.Group>
+          </div>
+
+
+          <div style={{ margin: '10px' }}>
+            <Form.Group className="mb-3" controlId="formFirstName">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control type="text"
+                name="firstname"
+                value={formik.values.firstname}
+                onChange={formik.handleChange}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formMiddleInitial">
+              <Form.Label>Middle Initial</Form.Label>
+              <Form.Control type="text"
+                name="middle"
+                value={formik.values.middle}
+                onChange={formik.handleChange}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formLastName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control type="text"
+                name="lastname"
+                value={formik.values.lastname}
+                onChange={formik.handleChange}
+              />
+            </Form.Group>
+          </div>
         </div>
-
-
-        <div  style={{ margin:'10px'}}>
-        <Form.Group className="mb-3" controlId="formFirstName">
-          <Form.Label>First Name</Form.Label>
-          <Form.Control type="text"
-          name="firstname" 
-          value={formik.values.firstname}
-          onChange={formik.handleChange}
-          />
-        </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formMiddleInitial">
-            <Form.Label>Middle Initial</Form.Label>
-            <Form.Control type="text" 
-            name="middle" 
-            value={formik.values.middle}
-            onChange={formik.handleChange}
-            />
+        <div className='field'>
+          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check type="checkbox"name="tosCheck" label="I agree to the Terms and Services"
+              value={formik.values.tosCheck}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur} 
+              className=''/>
+            {formik.touched.tosCheck && formik.errors.tosCheck ? (
+              <div className="error" style={{ color: 'red' }}>{formik.errors.tosCheck}</div>
+            ) : null}
           </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formLastName">
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control type="text" 
-            name="lastname" 
-            value={formik.values.lastname}
-            onChange={formik.handleChange}
-            />
-          </Form.Group>
-        </div>
-      </div>
-      <div className='field'>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox"> 
-        <Form.Check type="checkbox" label="I agree to the Terms and Services" name="tosCheck"
-          value={formik.values.tosCheck}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}/>
-        {formik.touched.tosCheck && formik.errors.tosCheck ? (
-              <div className="error" style={{color: 'red'}}>{formik.errors.tosCheck}</div>
-          ) : null}
-        </Form.Group>
         </div>
         <Button variant="primary" type="submit" className='btn-lg'>
           Submit
         </Button>
-        
-      </Form>   
-    </div>  
-    );
+
+      </Form>
+      </div>
+    </div>
+  );
 }
 
 export default Register;

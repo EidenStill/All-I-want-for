@@ -8,31 +8,35 @@
   background-color: #f2f2f2;
   border-color: #f2f2f2;
   transition: border-color 0.3s; /* Add a smooth transition for the border color */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .textitem {
-  width: 35vh;
-  display: -webkit-box;
-      -webkit-line-clamp: var(--line-clamp, 1);
-      -webkit-box-orient: vertical;
-      word-break: var(--word-break, 'none');
+  max-width: 15vw;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
 }
 
-.card > img {
+.card img {
   height: 270px;
   max-width: 100%;
-  max-height: 80%;
+  max-height: 70%;
   display: block;
   margin: 0 auto; 
   background-size:cover;
-    background-position:50% 50%;
     overflow: hidden;
   border-radius: 5%;
 }
+
+.text-container {
+  display: flex; /* Use flexbox to place the items in a row */
+  justify-content:flex-start; /* Vertically center the items */
+  flex-direction: column;
+  /* Add additional styles as needed, such as margin, padding, or spacing between the items */
+}
+
 
 .mylist-container {
   position: fixed;
@@ -51,7 +55,8 @@
   flex-direction: row;
   flex-wrap: wrap; /* Allows cards to wrap to the next column when there's not enough horizontal space */
   align-content: flex-start; /* Align content to the top of each column */
-  overflow-y: auto; /* Enable vertical scrolling when content overflows */   
+  overflow-y: auto; /* Enable vertical scrolling when content overflows */ 
+  background-color: white;  
 }
 
 /* Add hover styles */

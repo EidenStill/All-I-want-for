@@ -42,7 +42,7 @@ function Card() {
                       return (
                         <div className='card'>
                             <img src={item.image} alt={item.product} className='card-img' />  
-                            <div key={item.id}>                  
+                            <div className='text-container' key={item.id}>                  
                             <h4 className='textitem'>
                               {item.product}
                             </h4>
@@ -54,9 +54,13 @@ function Card() {
                       userData.map((item) => (
                         <div className='card'>
                             <img src={item.image} alt={item.product} className='card-img' />                    
-                            <div key={item.id}>
-                                    <h4 className='textitem'>{item.product}</h4>
-                                </div>
+                            <div className='text-container' key={item.id}>
+                            <h5 className='textitem'>{item.product}</h5>
+                              <div className='text-container'>                
+                                  <p className='textitem'>{item.source}</p>
+                                  <p className='textitem'>{item.expiry}</p>
+                              </div>
+                            </div>
                         </div>              
                     ))  
                       
