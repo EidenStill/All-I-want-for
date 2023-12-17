@@ -4,6 +4,8 @@ import Register from './layouts/registerlayout.js';
 import Landing from './layouts/landinglayout.js';
 import About from './layouts/aboutlayout.js';
 import Home from './layouts/homelayout.js';
+import Signin from './layouts/signinlayout';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -13,6 +15,13 @@ import SwaggerViewer from './SwaggerViewer';
 import SwaggerUI from "swagger-ui-react";
 import "swagger-ui-react/swagger-ui.css";
 
+import WebFontLoader from 'webfontloader';
+
+WebFontLoader.load({
+ google: {
+   families: ['Material Icons'],
+ },
+});
 
 function App() {
 
@@ -31,6 +40,7 @@ function App() {
       <SkeletonTheme baseColor="#D2D4DB" highlightColor="#F9FAFC">
         {/* <BrowserRouter> */}
           <Routes>
+          <Route path="/signin" element={<Signin/>} />
             <Route path="/register" element={<Register />} />
             <Route path="/about" element={<About />} />
             <Route path="/" element={<Landing />} />

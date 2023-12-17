@@ -16,13 +16,13 @@
     background-color: rgb(255, 255, 255);
     top: 20%;
     min-height: 90vh;
-    min-width: 50vh;
+    min-width: 40vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: black;
-    padding-top: 30px;
+    padding-top: 30 px;
     border: solid 1px black;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -45,3 +45,72 @@
     top: 0;
     left: 0;
 }
+
+.floating-label {
+    position: relative;
+    margin-bottom: 20px;
+   }
+   
+   .floating-label input {
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    width: 100%;
+    font-size: 1.5em;
+    transition: border-color 0.3s;
+   }
+   
+   .floating-label input:focus {
+    border-color: #000;
+   }
+   
+   .floating-label label {
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 5px;
+    transition: 0.2s ease all;
+   }
+   
+   .floating-label input:focus ~ label,
+   .floating-label input:not(:placeholder-shown) ~ label {
+    top: -20px;
+    font-size: 0.8em;
+    color: #000;
+   }
+   
+   @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+   .form-floating .icon {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+   }
+
+   .sign-in-btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 9rem 11rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+   }
+   .btn-lg, .btn-group-lg>.btn{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 9rem 11rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+   }

@@ -49,7 +49,7 @@
   
 
   .design-image {
-    width: 20vw; /* Adjust this value to your desired square size */
+    width:20vw; /* Adjust this value to your desired square size */
     height: 35vh; /* Adjust this value to your desired square size */
     overflow: hidden;
     align-items: center;
