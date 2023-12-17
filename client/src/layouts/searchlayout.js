@@ -5,7 +5,6 @@ import Footer from '../components/footer'; // Import the Footer component
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import SearchResults from '../components/searchresult';
 
 function Home() {
   return (

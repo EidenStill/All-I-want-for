@@ -6,7 +6,7 @@ import Landing from './layouts/landinglayout.js';
 import About from './layouts/aboutlayout.js';
 import Home from './layouts/homelayout.js';
 import Signin from './layouts/signinlayout';
-import SearchResults from '/layouts/searchlayout.js'
+import SearchResults from './layouts/searchlayout.js'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'

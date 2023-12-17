@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate ,  useLocation } from "react-router-dom";
 
 const SearchResults = () => {
 const navigate = useNavigate();
   const location = useLocation();
+  const searchQuery = new URLSearchParams(location.search).get('q'); // Extract searchQuery from URL
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -48,8 +50,8 @@ const navigate = useNavigate();
           ))}
         </ul>
       )}
-	// Display message when no results are found
       {!loading && !error && searchResults.length === 0 && (
+        	/* Display message when no results are found */
         <div>
           <p>No discounted products found for "{searchQuery}"</p>
           <button onClick={() => navigate('/')}>Go Back</button>

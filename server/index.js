@@ -84,6 +84,29 @@ app.post('/login', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+router.get('/search', (req, res) => {
+    const value = req.query.q;
+    const que = "SELECT * FROM discounts JOIN items ON discounts.item_id = items.item_id WHERE items.item_name LIKE ? ; "
+
+    // Execute the SELECT query
+    db.query(que, value, (err, data) => {
+        if (err) {
+            console.error('Error during login:', err);
+            return res.status(500).json(err);
+        }
+
+        // Check if any matching item was found
+        if (data.length > 0) {
+            return res.json({
+                data
+            });
+        } else {
+            // No matching user found
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+
+    });
 });
+    app.listen(port, () => {
+        console.log(`Server is running on http://localhost:${port}`);
+    });

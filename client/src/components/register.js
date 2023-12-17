@@ -1,5 +1,5 @@
-// import React, { useState, useEffect } from 'react';
-
+//  import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
@@ -45,15 +45,14 @@ function Register() {
       firstname: "",
       middle: "",
       lastname: "",
-      hobbies: "",
-      extra2: "",
+
       tosCheck: false,
     },
     validationSchema: validationSchema,
     validateOnBlur: true,
   });
 
-  const OnSubmit = (event) => {
+  const OnSubmit = async (event) => {
     event.preventDefault();
     let formData = {
       email: event.target[0].value,
@@ -62,9 +61,7 @@ function Register() {
       firstname: event.target[3].value,
       middle: event.target[4].value,
       lastname: event.target[5].value,
-      hobbies: event.target[6].value,
-      extra2: event.target[7].value,
-      tosCheck: event.target[8].checked,
+      tosCheck: event.target[6].checked,
     };
     // Use Formik's validate function to validate the form values against the schema
     const isValid = validationSchema.isValidSync(formData);
