@@ -84,25 +84,35 @@ app.post('/login', async (req, res) => {
     }
 });
 
-router.get('/search', (req, res) => {
-    const value = req.query.q;
-    const que = "SELECT * FROM discounts JOIN items ON discounts.item_id = items.item_id WHERE items.item_name LIKE ? ; "
+app.get('/search', (req, res) => {
+    const value = ['%'+req.query.q+'%'];
+    const que = "SELECT discount_id, item_name, item_img, discount_source, discount_description, discount_code, discount_value, discount_expiration, discount_url FROM discounts JOIN items ON discounts.item_id = items.item_id WHERE items.item_name LIKE ? ";
 
     // Execute the SELECT query
     db.query(que, value, (err, data) => {
         if (err) {
-            console.error('Error during login:', err);
+            console.error('Error during search:', err);
             return res.status(500).json(err);
         }
-
+        
         // Check if any matching item was found
         if (data.length > 0) {
+
             return res.json({
                 data
+                // discount_id : data.discount_id,
+                // item_name : data.item_name,
+                // item_img : data.item_img,
+                // discount_source : data.discount_source,
+                // discount_description : data.discount_description,
+                // discount_code : data.discount_code,
+                // discount_value : data.discount_value,
+                // discount_expiration : data.discount_expiration,
+                // discount_url : data.discount_url,
             });
         } else {
             // No matching user found
-            return res.status(401).json({ message: 'Invalid email or password' });
+            return res.json({ message: 'No matching items found' });
         }
 
     });

@@ -40,7 +40,6 @@ function Home() {
     // }catch(err){
     //   console.log(err)
     // }
-    alert(searchInput)
     navigate(`/search-results?q=${searchInput}`);
   }
 
