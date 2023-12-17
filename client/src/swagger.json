@@ -1,0 +1,92 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Aliwant",
+    "description": "Description",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/register": {
+      "get": {
+        "summary": "Get user registration",
+        "description": "Returns the user registration page",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/about": {
+      "post": {
+        "summary": "Get about page",
+        "description": "Returns the about page",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Get landing page",
+        "description": "Returns the landing page",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/home": {
+      "get": {
+        "summary": "Get home page",
+        "description": "Returns the home page",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/home/deleteItem": {
+      "delete": {
+        "summary": "Delete item from wishlist",
+        "description": "Deletes an item from the Wish List of the user",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/home/editItem": {
+      "patch": {
+        "summary": "Edits item from wishlist",
+        "description": "Edits an item from the wishlist",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/profile/edit": {
+      "put": {
+        "summary": "Edits the user profile",
+        "description": "Edits the profile the user",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    }
+  }
+}
