@@ -13,7 +13,7 @@ const port = 8000;
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "",
     database: "aliwant"
 })
 app.use(bodyParser.json());
@@ -47,7 +47,7 @@ app.post('/register', async (req, res) => {
 
     } catch (error) {
         console.error('Error during registration:', error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send(error.sqlMessage);
     }
 });
 

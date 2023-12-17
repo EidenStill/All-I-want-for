@@ -72,6 +72,7 @@ const Register = () => {
         navigate("/")
       }catch(err){
         console.log(err)
+        alert(err)
       }
     } else {
       // Handle validation errors here
