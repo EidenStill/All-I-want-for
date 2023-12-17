@@ -1,10 +1,12 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
+
 import Register from './layouts/registerlayout.js';
 import Landing from './layouts/landinglayout.js';
 import About from './layouts/aboutlayout.js';
 import Home from './layouts/homelayout.js';
 import Signin from './layouts/signinlayout';
+import SearchResults from '/layouts/searchlayout.js'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
@@ -46,6 +48,7 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/home" element={<Home />} />
             <Route path="/swagger" element={<SwaggerViewer />} />
+            <Route path="/search-results" element={<SearchResults />} />
           </Routes>
         {/* </BrowserRouter> */}
       </SkeletonTheme>

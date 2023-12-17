@@ -71,6 +71,20 @@ function Register() {
     if (isValid) {
       // If data is valid, navigate to the home page and pass the form data as state
       navigate("/home", { state: { formData } });
+      formData = {
+        email: event.target[0].value,
+        password: event.target[1].value,
+        firstname: event.target[3].value,
+        middle: event.target[4].value,
+        lastname: event.target[5].value,
+      };
+      try{
+        await axios.post('http://localhost:8000/register', formData);
+        navigate("/")
+      }catch(err){
+        console.log(err)
+        alert(err)
+      }
     } else {
       // Handle validation errors here
       alert("Form data is invalid.");
