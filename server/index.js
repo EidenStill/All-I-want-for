@@ -67,7 +67,12 @@ app.post('/login', async (req, res) => {
             // Check if any matching user was found
             if (data.length > 0) {
                 // User authenticated successfully
-                return res.json({ message: 'Login successful' });
+                const user = data[0]; // Assuming there is only one matching user
+                return res.json({
+                    message: 'Login successful',
+                    fname: user.user_fname,
+                    lname: user.user_lname,
+                });
             } else {
                 // No matching user found
                 return res.status(401).json({ message: 'Invalid email or password' });
