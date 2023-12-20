@@ -114,3 +114,8 @@
     cursor: pointer;
     border-radius: 10px;
    }
+
+   .wide-form-control {
+    width: 100%; /* Adjust this value as needed */
+   }
+   

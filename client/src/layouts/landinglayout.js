@@ -1,11 +1,11 @@
 import Landing from '../components/landing'; // Import the Landing component
-import LandingNavBar from '../components/landing_navbar'; // Import the NavBar component
+import NavBar from '../components/navbar'; // Import the NavBar component
 import '../styles/App.css'
 
 function MainLayout() {
   return (
     <div>
-     <LandingNavBar />
+     <NavBar />
      <Landing />
     </div>
   );

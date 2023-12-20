@@ -115,16 +115,17 @@ function Register() {
         <h3>Sign-Up</h3>
         <br />
 
-        <Form onSubmit={OnSubmit}>
+        <Form onSubmit={OnSubmit} >
           <div
             style={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              paddisng: "30px",
+              padding: "30px",
             }}
           >
-            <div style={{ margin: "10px" }}>
+            
+              <Col md={7} className="m-2">
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Floating className="mb-3">
                   <Form.Control
@@ -134,6 +135,7 @@ function Register() {
                     value={formik.values.email}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
+                    className="wide-form-control"
                   />
                   <Form.Text className="text-muted">
                     {formik.touched.email && formik.errors.email ? (
@@ -196,9 +198,10 @@ function Register() {
                 </span>
               </Form.Floating>
               </Form.Group>
-            </div>
+            </Col>
+            
 
-            <div style={{ margin: "10px" }}>
+            <Col md={7} className="m-2">
               <Form.Group className="mb-3" controlId="formFirstName">
               <Form.Floating className="mb-3">
             
@@ -236,7 +239,7 @@ function Register() {
                 <Form.Label>Last Name</Form.Label>
               </Form.Floating>
               </Form.Group>
-            </div>
+            </Col>
           </div>
           <div className="field">
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
