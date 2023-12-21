@@ -1,6 +1,9 @@
 import express from "express"
 import bodyParser from "body-parser"
 import mysql from "mysql"
+import { spawn } from "child_process"
+// const session = require("express-session");
+import session from "express-session"
 // import db from "db.js"
 import cors from "cors"
 // const bodyParser = require('body-parser');
@@ -16,9 +19,48 @@ const db = mysql.createConnection({
     password: "",
     database: "aliwant"
 })
+
+function runPythonScript() {
+    const pythonScript = "python";
+    const scriptArgs = ["scrape.py"];
+  
+    const pythonProcess = spawn(pythonScript, scriptArgs);
+  
+    pythonProcess.stdout.on("data", (data) => {
+      console.log(`Python script output: ${data}`);
+    });
+  
+    pythonProcess.stderr.on("data", (data) => {
+      console.error(`Python script error: ${data}`);
+    });
+  
+    pythonProcess.on("close", (code) => {
+      if (code === 0) {
+        console.log("Python script execution successful");
+      } else {
+        console.error(`Python script execution failed with code ${code}`);
+      }
+    });
+  
+    pythonProcess.on("error", (error) => {
+      console.error(`Error executing Python script: ${error.message}`);
+    });
+  }
+
 app.use(bodyParser.json());
 app.use(express.json())
 app.use(cors()); // Enable CORS for all routes
+app.use(
+    session({
+      secret: "secret",
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        secure: false,
+        maxAge: 1000 * 60 * 60 * 24,
+      },
+    })
+  );
 
 app.get("/", (req, res) => {
     res.json({ message: "Hello from server!" });
@@ -56,19 +98,24 @@ app.post('/login', async (req, res) => {
     try {
         const q = "SELECT * FROM users WHERE user_email = ? AND user_password = ?";
         const values = [req.body.email, req.body.password];
-
+        console.log(req.body)
         // Execute the SELECT query
         db.query(q, values, (err, data) => {
             if (err) {
                 console.error('Error during login:', err);
                 return res.status(500).json(err);
             }
-
+            console.log(data)
             // Check if any matching user was found
             if (data.length > 0) {
                 // User authenticated successfully
                 const user = data[0]; // Assuming there is only one matching user
+                console.log(user)
+                req.session.user_email = user.user_email
+                req.session.user_fname = user.user_fname
+                req.session.user_lname = user.user_lname
                 return res.json({
+                    success: true,
                     message: 'Login successful',
                     fname: user.user_fname,
                     lname: user.user_lname,
@@ -119,4 +166,5 @@ app.get('/search', (req, res) => {
 });
     app.listen(port, () => {
         console.log(`Server is running on http://localhost:${port}`);
+        // runPythonScript();
     });
