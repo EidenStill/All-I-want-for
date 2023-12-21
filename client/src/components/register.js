@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/images.css";
 import "../styles/authentication.css";
 import React from "react";
-import { Row, Col, Form, Button, Image, Navbar } from "react-bootstrap"; // import Image and Navbar
+import { Col, Form, Button, Image, Navbar } from "react-bootstrap"; // import Image and Navbar
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // import the eye icons
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 

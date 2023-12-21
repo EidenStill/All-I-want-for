@@ -7,11 +7,9 @@ import {
   Modal,
   Col,
   Row,
-  Form,
   FormControl,
 } from "react-bootstrap";
-
-import { ClipLoader } from "react-spinners";
+import  Form from "react-bootstrap/form"
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -28,8 +26,6 @@ background-color: #f2f2f2;
 width: 85%;
 height: 100vh;
 left: 15%; /*S
-
-
 `;
 
 const EventCard = styled(Card)`
@@ -57,11 +53,6 @@ const CardTitle = styled(Card.Title)`
   -webkit-box-decoration-break: clone;
   /* Optional: Adjust the line height for better appearance */
   line-height: 1.4;
-  max-width: 15vw;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
 `;
 
 const CardButton = styled(Button)`
@@ -147,7 +138,6 @@ const CancelButton = styled(Button)`
 `;
 
 function ItemCard(item) {
-  const [loading, setLoading] = useState(false);
   const titleRef = useRef(null);
   const [status, setStatus] = useState(false);
   const [message, setMessage] = useState("");
@@ -189,18 +179,17 @@ function ItemCard(item) {
 
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
-    const searchItems = (searchValues) => {
-      setLoading(true);
-      setSearchInput(searchValues);
-      const filteredData = userData.filter((item) => {
-        const product = item.product.toLowerCase();
-        return product.includes(searchInput.toLowerCase());
-      });
-      setFilteredResults(filteredData);
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-     };
+  const searchItems = (searchValues) => {
+    setSearchInput(searchValues);
+    const filteredData = userData.filter((item) => {
+      // Access the "product" field of the current item and convert it to lowercase
+      const product = item.product.toLowerCase();
+
+      // Check if the product contains the lowercase search input
+      return product.includes(searchInput.toLowerCase());
+    });
+    setFilteredResults(filteredData);
+  };
 
   return (
     <EventContainer>
@@ -227,13 +216,7 @@ function ItemCard(item) {
           </Col>
         </Row>
       </Form>
-      <div className="card-container scrollable">
-      {loading ? (
-            <div className="spinner-container" style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
-      <ClipLoader color="#333" loading={loading} size={50} />
-    </div>
-        ) : (
-          <>
+      <div className="card-container">
         {searchInput.length > 1
           ? filteredResults.map((item) => {
               return (
@@ -256,8 +239,7 @@ function ItemCard(item) {
                       <span>{item.source}</span>
                       <span> | </span>
                       <span>{item.expiry}</span> <br />
-                      <span>Original Price</span> <br />
-                      <span>Discounted Price</span> <br />
+                      <span>{item.city}</span> <br />
                       
                     </Card.Text>
                   </Card.Body>
@@ -265,7 +247,6 @@ function ItemCard(item) {
               );
             })
           : userData.map((item) => (
-            
             <EventCard>
             <EventImg
               src={item.image}
@@ -285,15 +266,12 @@ function ItemCard(item) {
                 <span>{item.source}</span>
                 <span> | </span>
                 <span>{item.expiry}</span> <br />
-                <span>Original Price</span> <br />
-                <span>Discounted Price</span> <br />
+                <span>{item.city}</span> <br />
                 
               </Card.Text>
             </Card.Body>
           </EventCard>
             ))}
-            </>
-        )}
       </div>
     </EventContainer>
   );

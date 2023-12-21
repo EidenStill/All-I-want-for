@@ -1,11 +1,12 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 
-import Register from './layouts/registerlayout.js';
-import Landing from './layouts/landinglayout.js';
-import About from './layouts/aboutlayout.js';
-import Home from './layouts/homelayout.js';
+import Register from './layouts/registerlayout';
+import Landing from './layouts/landinglayout';
+import About from './layouts/aboutlayout';
+import Home from './layouts/homelayout';
 import Signin from './layouts/signinlayout';
+import Wish from './layouts/wishlayout';
 import SearchResults from './layouts/searchlayout.js'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -47,6 +48,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/" element={<Landing />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/wishlist" element={<Wish />}/>
             <Route path="/swagger" element={<SwaggerViewer />} />
             <Route path="/search-results" element={<SearchResults />} />
           </Routes>

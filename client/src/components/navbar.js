@@ -25,20 +25,20 @@ function NavBar() {
  }, 2000);
 
  return (
+  
  <Navbar expand="lg" className="bg-body-tertiary" >
-   <Container >
-     <Navbar.Brand href="/">
-       {isLoading ? <Skeleton width={30} height={30} /> : <img
-         src="/images/Logo.png"
-         width="30"
-         height="30"
-         className="d-inline-block align-top"
-         alt="React Bootstrap logo"
-       />}
-     </Navbar.Brand>
+   <Container  className="custom-container" >
+   <Navbar.Brand href="/">
+   {isLoading ? <Skeleton width={30} height={30} /> : <img
+     src="/images/Logo.png"
+     style={{width: '2rem', objectFit: 'cover'}} // adjust this value for the desired width as a percentage
+     className="d-inline-block align-top"
+     alt="React Bootstrap logo"
+   />}
+ </Navbar.Brand>
      <Navbar.Toggle aria-controls="basic-navbar-nav" />
      <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-
+     
        <Nav className="me-auto">
          {isLoading ? (
            <>
@@ -52,6 +52,7 @@ function NavBar() {
            </>
          )}
        </Nav>
+       
        {isLoggedIn ? (
          <NavDropdown
            title={
@@ -81,6 +82,7 @@ function NavBar() {
           Sign In
          </Nav.Link>
        )}
+       
      </Navbar.Collapse>
    </Container>
  </Navbar>

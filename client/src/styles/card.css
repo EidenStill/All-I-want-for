@@ -19,16 +19,6 @@
   display: inline-block;
 }
 
-.card img {
-  height: 75%;
-  max-width: 100%;
-  max-height: 75%;
-  display: block;
-  margin: 0 auto; 
-  background-size:cover;
-    overflow: hidden;
-  border-radius: 5%;
-}
 
 .text-container {
   max-height: 25%;
@@ -53,7 +43,7 @@
 }
 
 .card-container {
-  height: 100vh;
+  height: 80vh;
   flex-grow: 1; /* Allow content to grow and take available space */
   padding: 10px; /* Add padding to separate content from the image */
   display: flex;
@@ -62,6 +52,7 @@
   align-content: flex-start; /* Align content to the top of each column */
   overflow-y: auto; /* Enable vertical scrolling when content overflows */ 
   background-color: white;  
+  width: 85vw;
 }
 
 /* Add hover styles */
@@ -70,3 +61,40 @@
   border-width: 5px;
   border-radius: 5%;
 }
+.search-input {
+  position: relative;
+  
+ }
+ 
+ .search-input .fa-search {
+  position: absolute;
+  right: 10px;
+  top: 29%;
+  transform: translateY(-50%);
+ }
+ .bar{
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-end;
+  justify-content: space-between;
+
+ }
+ 
+ .my-heading {
+  color: black;
+  font-size: 2em;
+  border: none;
+  padding: 10px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  font-weight: bold;
+ }
+
+ 
+ .spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  
+ }

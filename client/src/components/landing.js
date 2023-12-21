@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import logo from '../logo.svg';
+// import axios from 'axios';
+// import logo from '../logo.svg';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Col, Navbar, Row, Image } from 'react-bootstrap';
+import { Col, Navbar, Row } from 'react-bootstrap';
 import '../styles/form.css';
 import '../styles/images.css';
 import '../styles/App.css';
 
 import userData from '../staticdata.json';
-import { useNavigate ,  useLocation } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 
 
 function Home() {
