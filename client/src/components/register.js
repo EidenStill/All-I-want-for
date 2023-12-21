@@ -52,6 +52,7 @@ function Register() {
     validateOnBlur: true,
   });
 
+ 
   const OnSubmit = async (event) => {
     event.preventDefault();
     let formData = {
@@ -67,7 +68,7 @@ function Register() {
     const isValid = validationSchema.isValidSync(formData);
     if (isValid) {
       // If data is valid, navigate to the home page and pass the form data as state
-      navigate("/home", { state: { formData } });
+      // navigate("/home", { state: { formData } });
       formData = {
         email: event.target[0].value,
         password: event.target[1].value,
@@ -77,7 +78,7 @@ function Register() {
       };
       try{
         await axios.post('http://localhost:8000/register', formData);
-        navigate("/")
+        navigate("/signin")
       }catch(err){
         console.log(err)
         alert(err)
@@ -87,6 +88,7 @@ function Register() {
       alert("Form data is invalid.");
     }
   };
+
 
 
   const handleClick = () => {
