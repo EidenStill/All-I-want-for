@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Button,
@@ -14,9 +14,8 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FaBookmark } from "react-icons/fa";
-import userData from "../staticdata.json";
+import { fetchsales } from '../queryData';
 import axios from "axios";
-//import userData from '../data/user_data';
 import "../styles/card.css";
 
 const EventContainer = styled.div`
@@ -138,11 +137,24 @@ const CancelButton = styled(Button)`
 `;
 
 function ItemCard(item) {
+  const [userData, setuserData] = useState([]);
   const titleRef = useRef(null);
   const [status, setStatus] = useState(false);
   const [message, setMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchsales();
+        setuserData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData()
+}, [])
 
   const toast = () => {
     setShowToast(true);

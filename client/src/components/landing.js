@@ -10,7 +10,7 @@ import '../styles/form.css';
 import '../styles/images.css';
 import '../styles/App.css';
 
-import userData from '../staticdata.json';
+import { fetchsales } from '../queryData';
 import { useNavigate  } from "react-router-dom";
 
 
@@ -29,16 +29,16 @@ function Home() {
  }, []);
 
  const searchDiscounts = (searchValues) => {
-   console.log(searchValues);
-   setSearchInput(searchValues);
-   const filteredData = userData.filter((item) => {
-// Access the "product" field of the current item and convert it to lowercase
-     const product = item.product.toLowerCase();
+//    console.log(searchValues);
+//    setSearchInput(searchValues);
+//    const filteredData = userData.filter((item) => {
+// // Access the "product" field of the current item and convert it to lowercase
+//      const product = item.product.toLowerCase();
 
-      // Check if the product contains the lowercase search input
-     return product.includes(searchInput.toLowerCase()); 
-   }) 
-   console.log(filteredData); 
+//       // Check if the product contains the lowercase search input
+//      return product.includes(searchInput.toLowerCase()); 
+//    }) 
+//    console.log(filteredData); 
  }
 
 const searchPage = async (event) => {
