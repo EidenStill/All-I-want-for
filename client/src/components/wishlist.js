@@ -15,7 +15,6 @@ import { ClipLoader } from "react-spinners";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FaBookmark } from "react-icons/fa";
 import { fetchsales } from '../queryData';
 import axios from "axios";
 import "../styles/card.css";
@@ -156,6 +155,7 @@ function ItemCard({ item, onRemove }) {
 
 
   const [searchInput, setSearchInput] = useState("");
+
   const [filteredResults, setFilteredResults] = useState([]);
     const searchItems = (searchValues) => {
       setLoading(true);
@@ -165,6 +165,7 @@ function ItemCard({ item, onRemove }) {
         return product.includes(searchInput.toLowerCase());
       });
       setFilteredResults(filteredData);
+
       setTimeout(() => {
         setLoading(false);
       }, 2000);
@@ -182,7 +183,7 @@ function ItemCard({ item, onRemove }) {
           <Col xs="12">
             <div className="bar">
               <div>
-                <h2 class="my-heading">Wishlist</h2>
+                <h2 class="my-heading">My Wishlist</h2>
               </div>
               <div className="search-input">
                 <FormControl
@@ -205,10 +206,8 @@ function ItemCard({ item, onRemove }) {
       <ClipLoader color="#333" loading={loading} size={50} />
     </div>
         ) : (
-          <>
-
-
-        {searchInput.length > 1
+         <>
+       {searchInput.length > 1
           ? filteredResults.map((item) => {
               return (
                 <EventCard>
@@ -247,12 +246,12 @@ function ItemCard({ item, onRemove }) {
               <EventLink to={`/Event/${item.id}`}>
                 <CardTitle ref={titleRef}>{item.product}</CardTitle>
               </EventLink>
-              <Card.Text id="cardContent" style={{ fontSize: 16 }}>
-                <span>{item.source}</span>
-                <span> | </span>
-                <span>{item.expiry}</span> <br />
-                <span>Original Price</span> <br />
-                <span>Discounted Price</span> <br />
+              <Card.Text id="cardContent" style={{ fontSize: 14 }}>
+              <span>{item.source}</span>
+                      <span> | </span>
+                      <span>{item.expiry}</span> <br />
+                      <span placeholder="Original Price">Original Price = {item.original}</span> <br />
+                      <span placeholder="Discounted Price">Discounted Price = {item.price}</span> <br />
                 <span onClick={() => setShowConfirmationModal(true)}   style={{ position: 'absolute', bottom: '10px', right: '16px',
             color: 'red', cursor: 'pointer'}}>Remove</span>
               </Card.Text>
@@ -264,7 +263,7 @@ function ItemCard({ item, onRemove }) {
       </div>
 
          {/* Floating Toast */}
-         <Toast
+      <Toast
         show={showToast}
         onClose={() => setShowToast(false)}
         delay={3000}
@@ -274,7 +273,7 @@ function ItemCard({ item, onRemove }) {
           position: 'fixed',
           top: '15px',
           right: '13px',
-          width: '200px', // Set the width as needed
+          width: '200px', 
           zIndex: 1,
         }}
       >
@@ -288,8 +287,8 @@ function ItemCard({ item, onRemove }) {
         </Modal.Header>
         <Modal.Body>
           Are you sure you want to remove this event? <br/>
-          <Card.Title style={{ fontSize: 20, fontWeight: 'bold', color: '#DA7422'}}>{item.product}</Card.Title> on <span>{item.source}</span><span> | </span>
-          <span>{item.expiry}</span> - <span>Original Price</span> <br />
+          {/* <Card.Title style={{ fontSize: 20, fontWeight: 'bold', color: '#DA7422'}}>{item.product}</Card.Title> on <span>{item.source}</span><span> | </span>
+          <span>{item.expiry}</span> - <span>Original Price</span> <br /> */}
         </Modal.Body>
         <Modal.Footer>
           <CancelButton onClick={() => setShowConfirmationModal(false)}>

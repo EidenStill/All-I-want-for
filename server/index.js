@@ -307,7 +307,7 @@ app.get("/getsalesbyid/:id", (req, res) => {
       // time: formatToTimeAMPM(item.time),
     }));
     console.log("formattedSales=    ", formattedSales)
-    return res.json(formattedSales);
+    return res.json(formattedSales[0]);
   });
 });
 

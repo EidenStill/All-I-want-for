@@ -24,8 +24,8 @@ function NavBar() {
  setIsLoading(false);
  }, 2000);
 
+
  return (
-  
  <Navbar expand="lg" className="bg-body-tertiary" >
    <Container  className="custom-container" >
    <Navbar.Brand href="/">
@@ -78,7 +78,7 @@ function NavBar() {
          </NavDropdown>
        ) : (
          isLoading ? <Skeleton  width={40} height={30}/> : 
-         <Nav.Link href="signin" className="btn btn-outline-success sign-in-link" onClick={handleLogin}>
+         <Nav.Link href="/signin" className="btn btn-outline-success sign-in-link" onClick={handleLogin}>
           Sign In
          </Nav.Link>
        )}

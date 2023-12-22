@@ -219,6 +219,8 @@ function ItemCard(item) {
         return product.includes(searchInput.toLowerCase());
       });
       setFilteredResults(filteredData);
+
+
       setTimeout(() => {
         setLoading(false);
       }, 2000);
@@ -240,7 +242,7 @@ function ItemCard(item) {
           <Col xs="12">
             <div className="bar">
               <div>
-                <h2 className="my-heading">Wishlist</h2>
+                <h2 className="my-heading">Wish Products</h2>
               </div>
               <div className="search-input">
                 <FormControl

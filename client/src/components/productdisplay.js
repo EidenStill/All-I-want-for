@@ -13,15 +13,15 @@ import axios from "axios";
 
 const Title = styled.h2`
   font-weight: bold;
-  color: #da7422;
+  color: #808080;
 `;
 
 const CoverImg = styled.img`
-  width: 100%;
+  width: 30%;
   height: 100%;
-  object-fit: cover;
+  padding: 20px;
   object-position: top center;
-  margin: 0 auto;
+  margin: 10px;
 `;
 
 const StyledButton = styled(Button)`
@@ -33,8 +33,8 @@ const StyledButton = styled(Button)`
 
   &:hover,
   &:focus {
-    background-color: #da7422 !important;
-    border: 1px solid #da7422 !important;
+    background-color: #808080 !important;
+    border: 1px solid #808080 !important;
     color: white !important;
   }
 
@@ -50,7 +50,7 @@ const Text = styled.span`
 `;
 const EventLink = styled.a`
   text-decoration: none;
-  color: #da7422;
+  color: #808080;
 
   &:hover {
     color: #d06023;
@@ -61,7 +61,7 @@ const EventLink = styled.a`
 const ConfirmButton = styled(Button)`
   width: 90px;
   border-radius: 45px;
-  background-color: #da7422;
+  background-color: #808080;
   border: none;
   margin-right: 5px;
 
@@ -168,19 +168,26 @@ const ProductDisplay = () => {
         </div>
       ) : (
         <div>
-          <div style={{ height: 300 }}>
-            <CoverImg src={saleData[0].image} alt={saleData.product} />
+          <div style={{ height: 400 }}>
+            <CoverImg src={saleData.image} alt={saleData.product} />
           </div>
-          <Container style={{ marginTop: 30 }}>
-            <Grid container>
-              <Grid item xs={12} sm={6}>
+          <Container style={{ paddingLeft: 100, marginTop: 30 }}>
+            <Grid container style={{ textAlign: 'left' }}>
+              <Grid item xs={12} sm={9}>
                 <Title ref={titleRef}>{saleData.product}</Title>
                 <Text>{saleData.source} </Text> <Text> | </Text>
                 <Text>{saleData.expiry}</Text> <br />
-                <Text>{saleData.city}</Text>
+                <Text
+                  style={{
+                    textDecorationLine: "line-through",
+                    textDecorationStyle: "solid",
+                  }}>
+                  {saleData.original}
+                </Text>
+                <Text style={{ color: "#da7422" }}>             {saleData.discount}Off</Text>
+
                 <br />
-                <Text>{saleData.address}</Text> <br />
-                <Text style={{ color: "#da7422" }}>{saleData.price}</Text>
+                <Text >  {saleData.price}</Text> <br />
                 <br />
                 <br />
                 <p style={{ fontSize: "18px", textAlign: "justify" }}>
@@ -193,8 +200,8 @@ const ProductDisplay = () => {
               </Grid>
               <Grid
                 item
-                xs={12}
-                sm={6}
+                xs={2}
+                sm={2}
                 style={{
                   display: "flex",
                   justifyContent: "flex-end",
