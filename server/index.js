@@ -24,8 +24,8 @@ const db = mysql.createConnection({
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'your-email@gmail.com',
-      pass: 'your-email-password',
+      user: 'aliwant54@gmail.com',
+      pass: 'rgcw pzel inwo qlmy',
     },
   });
 
@@ -63,8 +63,85 @@ function runPythonScript() {
   }
 
 function checkLists() {
-
+    const q = "SELECT * FROM `wishlists`";
+    db.query(q, async (err, data) => {
+        if (err) {
+            console.error('Error during querying:', err);
+            return res.status(500).json(err);
+        }
+        const wishlist = data.map((item) => ({
+            id: item.wishlist_id,
+            item: item.item_name,
+            user: item.user_id,
+          }));
+        // For loop to get every wishlist
+        wishlist.forEach((wishlist) => {
+            const value = ['%'+wishlist.item+'%'];
+            const que = "SELECT * FROM `sales` WHERE item_name LIKE ?";
+            db.query(que, value, async (err, data) => {
+                if (err) {
+                    console.error('Error during query:', err);
+                    return res.status(500).json(err);
+                }
+                if (data.length > 0) {
+                    console.log("WHAT =     ", data)
+                    const notifs = data.slice(0, 2)// I want this to only be upto the second one at max
+                    const details = await notifs.map((item) => ({
+                        id: item.sale_id,
+                        source: item.sale_source,
+                        product: item.item_name,
+                        price: item.item_price,
+                        image: item.item_img,
+                        expiry: formatToMonthDayYear(item.sale_expiration),
+                        discount: item.discount_value,
+                        original: item.original_price
+                    }));
+                    const query = "SELECT user_email FROM `users` WHERE user_id = ?"
+                    const email = wishlist.user
+                    db.query(query, email, async (err, data) => {
+                        if (err) {
+                            console.error('Error during query:', err);
+                            return res.status(500).json(err);
+                        }
+                        // Ensure that the database query has completed before calling sendNotification
+                        sendNotification({ userEmail: data[0].user_email, itemDetails: details });
+                    })
+                }
+            })
+        }); 
+    })
 }
+
+const sendNotification = async ({ userEmail, itemDetails }) => {
+    console.log("THIS =    ", itemDetails)
+    try {
+      const mailOptions = {
+        from: 'aliwant54@gmail.com',
+        to: userEmail,
+        subject: 'Your Wishlist Item is on Sale!',
+        html: `
+          <h1>Your Wishlist Item is on Sale!</h1>
+            ${itemDetails.map(item => `
+            <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                <h2>${item.product}</h2>
+                <img src="${item.image}" alt="${item.product}" style="width: 150px; height: auto;">
+                <p>Price: ${item.price}</p>
+                <p>Original Price: ${item.original}</p>
+                <p>Discount: ${item.discount}%</p>
+                <p>Sale Expires: ${item.expiry}</p>
+                <p>Sale Source: ${item.source}</p>
+            </div>
+            `).join('')}
+        `,
+      };
+  
+      // Use the transporter created outside the function
+      await transporter.sendMail(mailOptions);
+      console.log('Notification sent successfully!');
+    } catch (error) {
+      console.error('Error sending notification', error);
+    }
+  };
 
 app.use(bodyParser.json());
 app.use(express.json())
@@ -237,5 +314,5 @@ app.get("/getsalesbyid/:id", (req, res) => {
     app.listen(port, () => {
         console.log(`Server is running on http://localhost:${port}`);
         // runPythonScript();
-        // checkLists();
+        checkLists();
     });
