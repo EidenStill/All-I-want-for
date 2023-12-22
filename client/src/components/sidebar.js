@@ -9,13 +9,13 @@ function Sidebar() {
         <div className="sidebar">
             <Nav className="me-auto flex-column">
                 <Col>
-                    <Nav.Link className="link fs-5" href="home">
+                    <Nav.Link className="link fs-5" href="/wishlist">
                         <FaList className="icon" /> My List
                     </Nav.Link>
                 </Col>
                 <Col>
                     <Nav.Link className="link fs-5" href="about">
-                        <FaHistory className="icon" /> Recent
+                        <FaHistory className="icon" /> Vouchers
                     </Nav.Link>
                 </Col>
                 <Col>

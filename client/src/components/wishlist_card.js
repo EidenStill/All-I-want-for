@@ -78,7 +78,7 @@ const CardButton = styled(Button)`
 
   &:hover,
   &:focus {
-    background-color: #da7422;
+    background-color:  #808080 ;
     color: white !important;
   }
 
@@ -176,16 +176,25 @@ function ItemCard(item) {
     setShowConfirmationModal(false);
   };
 
+
+
+
   const navigate = useNavigate();
+
+
+
   const handleConfirmation = async () => {
     try {
       const response = await axios.get("http://localhost:8080/");
       console.log(response);
-      response.data.valid ? setShowConfirmationModal(true) : navigate("/login");
+      response.data.valid ? setShowConfirmationModal(true) : navigate("/signin");
     } catch (error) {
       console.error(error.response.data.error);
     }
   };
+
+
+
 
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
@@ -201,6 +210,12 @@ function ItemCard(item) {
         setLoading(false);
       }, 2000);
      };
+
+
+
+
+
+
 
   return (
     <EventContainer>
@@ -278,7 +293,7 @@ function ItemCard(item) {
               </CardButton>
             </CardSection>
             <Card.Body>
-              <EventLink to={`/Event/${item.id}`}>
+              <EventLink to={`/Product/${item.id}`}>
                 <CardTitle ref={titleRef}>{item.product}</CardTitle>
               </EventLink>
               <Card.Text id="cardContent" style={{ fontSize: 16 }}>
@@ -295,8 +310,46 @@ function ItemCard(item) {
             </>
         )}
       </div>
+
+         {/* Floating Toast */}
+         <Toast
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        delay={3000}
+        autohide
+        bg={status ? "success" : "danger"}
+        style={{
+          position: 'fixed',
+          top: '15px',
+          right: '13px',
+          width: '200px', // Set the width as needed
+          zIndex: 1,
+        }}
+      >
+      <Toast.Body style={{ color: 'white' }}>{message}</Toast.Body>
+      </Toast>
+
+      {/* Confirmation Modal */}
+      <Modal show={showConfirmationModal} onHide={() => setShowConfirmationModal(false)} centered >
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Action</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to bookmark this Product? <br />
+          <Card.Title style={{ fontSize: 20, fontWeight: 'bold', color: '#DA7422' }}>{item.product}</Card.Title> on <span>{item.source}</span><span> | </span>
+          <span>{item.expiry}</span> - <span>Price</span> <br />
+        </Modal.Body>
+        <Modal.Footer>
+          <CancelButton onClick={() => setShowConfirmationModal(false)}>
+            Cancel
+          </CancelButton>
+          <ConfirmButton onClick={confirmModal}>
+            Confirm
+          </ConfirmButton>
+        </Modal.Footer>
+      </Modal>
     </EventContainer>
   );
-}
+};
 
 export default ItemCard;

@@ -7,9 +7,11 @@ import {
   Modal,
   Col,
   Row,
+  Form,
   FormControl,
 } from "react-bootstrap";
-import  Form from "react-bootstrap/form"
+
+import { ClipLoader } from "react-spinners";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -26,6 +28,8 @@ background-color: #f2f2f2;
 width: 85%;
 height: 100vh;
 left: 15%; /*S
+
+
 `;
 
 const EventCard = styled(Card)`
@@ -53,43 +57,11 @@ const CardTitle = styled(Card.Title)`
   -webkit-box-decoration-break: clone;
   /* Optional: Adjust the line height for better appearance */
   line-height: 1.4;
-`;
-
-const CardButton = styled(Button)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  border-radius: 50%;
-  margin-right: 5px;
-  background-color: white;
-  border: none;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
-  color: black;
-
-  &:hover,
-  &:focus {
-    background-color: #da7422;
-    color: white !important;
-  }
-
-  &:active {
-    background-color: #d06023 !important;
-    color: white !important;
-  }
-`;
-
-const StyledBookmark = styled(FaBookmark)`
-  font-size: 24px;
-`;
-
-const CardSection = styled.div`
-  position: relative;
-  display: inline-flex;
-  margin-left: auto;
-  z-index: 1;
-  margin-top: -25px;
-  margin-bottom: -20px;
+  max-width: 15vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
 `;
 
 const EventLink = styled(Link)`
@@ -137,7 +109,8 @@ const CancelButton = styled(Button)`
   }
 `;
 
-function ItemCard(item) {
+function ItemCard({ item, onRemove }) {
+  const [loading, setLoading] = useState(false);
   const titleRef = useRef(null);
   const [status, setStatus] = useState(false);
   const [message, setMessage] = useState("");
@@ -153,43 +126,39 @@ function ItemCard(item) {
 
   const confirmModal = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/addevent/" + item.id
-      );
-      setStatus(response.data.success);
-      setMessage(response.data.message);
-      toast();
+      console.log(item.id)
+      const response = await axios.delete("http://localhost:8080/removeevent/"+item.id)
+      setStatus(response.data.success)
+      setMessage(response.data.message)
+      toast()
+      if (response.data.success) {
+        onRemove(item.id);
+      }
     } catch (error) {
-      console.error("Insert failed:", error.response.data.error);
+      console.error("Remove failed:", error.response.data.error);
     }
 
     setShowConfirmationModal(false);
   };
 
-  const navigate = useNavigate();
-  const handleConfirmation = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/");
-      console.log(response);
-      response.data.valid ? setShowConfirmationModal(true) : navigate("/login");
-    } catch (error) {
-      console.error(error.response.data.error);
-    }
-  };
+
 
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
-  const searchItems = (searchValues) => {
-    setSearchInput(searchValues);
-    const filteredData = userData.filter((item) => {
-      // Access the "product" field of the current item and convert it to lowercase
-      const product = item.product.toLowerCase();
+    const searchItems = (searchValues) => {
+      setLoading(true);
+      setSearchInput(searchValues);
+      const filteredData = userData.filter((item) => {
+        const product = item.product.toLowerCase();
+        return product.includes(searchInput.toLowerCase());
+      });
+      setFilteredResults(filteredData);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+     };
 
-      // Check if the product contains the lowercase search input
-      return product.includes(searchInput.toLowerCase());
-    });
-    setFilteredResults(filteredData);
-  };
+
 
   return (
     <EventContainer>
@@ -216,7 +185,17 @@ function ItemCard(item) {
           </Col>
         </Row>
       </Form>
-      <div className="card-container">
+      <div className="card-container scrollable">
+
+
+      {loading ? (
+            <div className="spinner-container" style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
+      <ClipLoader color="#333" loading={loading} size={50} />
+    </div>
+        ) : (
+          <>
+
+
         {searchInput.length > 1
           ? filteredResults.map((item) => {
               return (
@@ -226,11 +205,6 @@ function ItemCard(item) {
                     alt={item.product}
                     className="card-img"
                   />
-                  <CardSection>
-                    <CardButton onClick={handleConfirmation}>
-                      <StyledBookmark />
-                    </CardButton>
-                  </CardSection>
                   <Card.Body>
                     <EventLink to={`/Event/${item.id}`}>
                       <CardTitle ref={titleRef}>{item.product}</CardTitle>
@@ -239,25 +213,24 @@ function ItemCard(item) {
                       <span>{item.source}</span>
                       <span> | </span>
                       <span>{item.expiry}</span> <br />
-                      <span>{item.city}</span> <br />
-                      
+                      <span>Original Price</span> <br />
+                      <span>Discounted Price</span> <br />
+                                  <span onClick={() => setShowConfirmationModal(true)}   style={{ position: 'absolute', bottom: '10px', right: '16px',
+            color: 'red', cursor: 'pointer'}}>Remove</span>
                     </Card.Text>
                   </Card.Body>
                 </EventCard>
               );
             })
           : userData.map((item) => (
+            
             <EventCard>
             <EventImg
               src={item.image}
               alt={item.product}
               className="card-img"
             />
-            <CardSection>
-              <CardButton onClick={handleConfirmation}>
-                <StyledBookmark />
-              </CardButton>
-            </CardSection>
+            
             <Card.Body>
               <EventLink to={`/Event/${item.id}`}>
                 <CardTitle ref={titleRef}>{item.product}</CardTitle>
@@ -266,15 +239,57 @@ function ItemCard(item) {
                 <span>{item.source}</span>
                 <span> | </span>
                 <span>{item.expiry}</span> <br />
-                <span>{item.city}</span> <br />
-                
+                <span>Original Price</span> <br />
+                <span>Discounted Price</span> <br />
+                <span onClick={() => setShowConfirmationModal(true)}   style={{ position: 'absolute', bottom: '10px', right: '16px',
+            color: 'red', cursor: 'pointer'}}>Remove</span>
               </Card.Text>
             </Card.Body>
           </EventCard>
             ))}
+            </>
+        )}
       </div>
+
+         {/* Floating Toast */}
+         <Toast
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        delay={3000}
+        autohide
+        bg={status ? "success" : "danger"}
+        style={{
+          position: 'fixed',
+          top: '15px',
+          right: '13px',
+          width: '200px', // Set the width as needed
+          zIndex: 1,
+        }}
+      >
+      <Toast.Body style={{ color: 'white' }}>{message}</Toast.Body>
+      </Toast>
+
+      {/* Confirmation Modal */}
+      <Modal show={showConfirmationModal} onHide={() => setShowConfirmationModal(false)} centered >
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Action</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to remove this event? <br/>
+          <Card.Title style={{ fontSize: 20, fontWeight: 'bold', color: '#DA7422'}}>{item.product}</Card.Title> on <span>{item.source}</span><span> | </span>
+          <span>{item.expiry}</span> - <span>Original Price</span> <br />
+        </Modal.Body>
+        <Modal.Footer>
+          <CancelButton onClick={() => setShowConfirmationModal(false)}>
+            Cancel
+          </CancelButton>
+          <ConfirmButton onClick={confirmModal}>
+            Confirm
+          </ConfirmButton>
+        </Modal.Footer>
+      </Modal>
     </EventContainer>
   );
-}
+};
 
 export default ItemCard;
