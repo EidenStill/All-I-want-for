@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Button,
@@ -10,13 +10,12 @@ import {
   Form,
   FormControl,
 } from "react-bootstrap";
-
+import { fetchsales } from '../queryData';
 import { ClipLoader } from "react-spinners";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FaBookmark } from "react-icons/fa";
-import userData from "../staticdata.json";
 import axios from "axios";
 //import userData from '../data/user_data';
 import "../styles/card.css";
@@ -147,12 +146,26 @@ const CancelButton = styled(Button)`
 `;
 
 function ItemCard(item) {
+  const [userData, setuserData] = useState([]);
   const [loading, setLoading] = useState(false);
   const titleRef = useRef(null);
   const [status, setStatus] = useState(false);
   const [message, setMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchsales();
+        console.log(data)
+        setuserData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData()
+}, [])
 
   const toast = () => {
     setShowToast(true);
@@ -252,7 +265,7 @@ function ItemCard(item) {
         {searchInput.length > 1
           ? filteredResults.map((item) => {
               return (
-                <EventCard>
+                <EventCard key={item.id}>
                   <EventImg
                     src={item.image}
                     alt={item.product}
@@ -271,8 +284,8 @@ function ItemCard(item) {
                       <span>{item.source}</span>
                       <span> | </span>
                       <span>{item.expiry}</span> <br />
-                      <span>Original Price</span> <br />
-                      <span>Discounted Price</span> <br />
+                      <span placeholder="Original Price">Original Price = {item.original}</span> <br />
+                      <span placeholder="Discounted Price">Discounted Price = {item.price}</span> <br />
                       
                     </Card.Text>
                   </Card.Body>
@@ -281,7 +294,7 @@ function ItemCard(item) {
             })
           : userData.map((item) => (
             
-            <EventCard>
+            <EventCard key={item.id}>
             <EventImg
               src={item.image}
               alt={item.product}
@@ -300,8 +313,8 @@ function ItemCard(item) {
                 <span>{item.source}</span>
                 <span> | </span>
                 <span>{item.expiry}</span> <br />
-                <span>Original Price</span> <br />
-                <span>Discounted Price</span> <br />
+                <span placeholder="Original Price">Original Price = {item.original}</span> <br />
+                <span placeholder="Discounted Price">Discounted Price = {item.price}</span> <br />
                 
               </Card.Text>
             </Card.Body>

@@ -1,4 +1,5 @@
 import express from "express"
+import nodemailer from "nodemailer"
 import bodyParser from "body-parser"
 import mysql from "mysql"
 import { spawn } from "child_process"
@@ -20,10 +21,18 @@ const db = mysql.createConnection({
     database: "aliwant"
 })
 
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'your-email@gmail.com',
+      pass: 'your-email-password',
+    },
+  });
+
 function runPythonScript() {
     const pythonScript = "python";
     const scriptArgs = ["scrape.py"];
-  
+    const scraped_data = [];
     const pythonProcess = spawn(pythonScript, scriptArgs);
   
     pythonProcess.stdout.on("data", (data) => {
@@ -46,6 +55,16 @@ function runPythonScript() {
       console.error(`Error executing Python script: ${error.message}`);
     });
   }
+
+  function formatToMonthDayYear(dateTimeString) {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    const dateObj = new Date(dateTimeString);
+    return dateObj.toLocaleDateString("en-US", options);
+  }
+
+function checkLists() {
+
+}
 
 app.use(bodyParser.json());
 app.use(express.json())
@@ -164,7 +183,34 @@ app.get('/search', (req, res) => {
 
     });
 });
+
+app.get("/getsales", (req, res) => {
+    let q = "SELECT * FROM sales WHERE sale_expiration >= CURDATE()";
+
+    db.query(q, (err, data) => {
+      if (err) {
+        return res.status(500).json({ error: "Internal Server Error" });
+      }
+  
+      const formattedSales = data.map((item) => ({
+        id: item.sale_id,
+        source: item.sale_source,
+        product: item.item_name,
+        price: item.item_price,
+        image: item.item_img,
+        expiry: formatToMonthDayYear(item.sale_expiration),
+        discount: item.discount_value,
+        original: item.original_price
+        // date: formatToMonthDayYear(item.date),
+        // time: formatToTimeAMPM(item.time),
+      }));
+      return res.json(formattedSales);
+    });
+});
+  
+
     app.listen(port, () => {
         console.log(`Server is running on http://localhost:${port}`);
         // runPythonScript();
+        // checkLists();
     });
