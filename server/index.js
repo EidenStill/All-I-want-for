@@ -208,6 +208,31 @@ app.get("/getsales", (req, res) => {
     });
 });
   
+app.get("/getsalesbyid/:id", (req, res) => {
+  const salesId = req.params.id;
+  let q = "SELECT * FROM sales WHERE sale_id = ?";
+
+  db.query(q, salesId, (err, data) => {
+    if (err) {
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+
+    const formattedSales = data.map((item) => ({
+      id: item.sale_id,
+      source: item.sale_source,
+      product: item.item_name,
+      price: item.item_price,
+      image: item.item_img,
+      expiry: formatToMonthDayYear(item.sale_expiration),
+      discount: item.discount_value,
+      original: item.original_price
+      // date: formatToMonthDayYear(item.date),
+      // time: formatToTimeAMPM(item.time),
+    }));
+    console.log("formattedSales=    ", formattedSales)
+    return res.json(formattedSales);
+  });
+});
 
     app.listen(port, () => {
         console.log(`Server is running on http://localhost:${port}`);

@@ -12,9 +12,9 @@ export const fetchsales = async () => {
   }
 };
 
-export const fetchEventById = async (eventId) => {
+export const fetchSaleById = async (salesID) => {
   try {
-    const res = await axios.get(`http://localhost:8000/events/${eventId}`);
+    const res = await axios.get(`http://localhost:8000/getsalesbyid/${salesID}`);
     return res.data
   } catch (err) {
     console.error(err);

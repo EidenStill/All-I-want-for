@@ -6,13 +6,13 @@ import Sidebar from "../components/sidebar"; // Import the Sidebar component
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-function Home() {
+function productdisplayLayout() {
   return (
     <div className="">
       <NavBar />
       <div style={{ paddingTop: "61px" }}>
         <Row className="justify-content-md-center">
-          <Row noGutters>
+          <Row >
             <Col xs={1} className="mb-0" style={{ padding: '0', margin: '0' }} >
               <Sidebar />
             </Col>
@@ -26,4 +26,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default productdisplayLayout;

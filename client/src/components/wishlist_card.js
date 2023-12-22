@@ -240,7 +240,7 @@ function ItemCard(item) {
           <Col xs="12">
             <div className="bar">
               <div>
-                <h2 class="my-heading">Wishlist</h2>
+                <h2 className="my-heading">Wishlist</h2>
               </div>
               <div className="search-input">
                 <FormControl
@@ -309,7 +309,7 @@ function ItemCard(item) {
               <EventLink to={`/Product/${item.id}`}>
                 <CardTitle ref={titleRef}>{item.product}</CardTitle>
               </EventLink>
-              <Card.Text id="cardContent" style={{ fontSize: 16 }}>
+              <Card.Text id="cardContent" style={{ fontSize: 12 }}>
                 <span>{item.source}</span>
                 <span> | </span>
                 <span>{item.expiry}</span> <br />

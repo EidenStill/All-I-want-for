@@ -1,14 +1,15 @@
-import { Container, Button, Card, Toast, Modal } from 'react-bootstrap';
-import styled from 'styled-components';
+import { Container, Button, Card, Toast, Modal } from "react-bootstrap";
+import styled from "styled-components";
 
-import { BiCalendarPlus } from 'react-icons/bi';
-import { useParams, useNavigate } from 'react-router-dom';
+import { FaBookmark } from "react-icons/fa";
+import { useParams, useNavigate } from "react-router-dom";
 
-import { useState, useEffect, useRef } from 'react';
-import { fetchEventById } from '../data';
-import { Grid } from '@mui/material';
+import { useState, useEffect, useRef } from "react";
+import { fetchSaleById } from "../queryData";
+import { Grid } from "@mui/material";
+import { ClipLoader } from "react-spinners";
 
-import axios from 'axios';
+import axios from "axios";
 
 const Title = styled.h2`
   font-weight: bold;
@@ -24,53 +25,54 @@ const CoverImg = styled.img`
 `;
 
 const StyledButton = styled(Button)`
-    border-radius: 50%;
-    padding: 10px;
-    border: 1px solid gray;
-    background-color: transparent;
-    color: black;
+  border-radius: 50%;
+  padding: 10px;
+  border: 1px solid gray;
+  background-color: transparent;
+  color: black;
 
-    &:hover, &:focus {
-        background-color: #da7422 !important;
-        border: 1px solid #da7422 !important;
-        color: white !important;
-    }
+  &:hover,
+  &:focus {
+    background-color: #da7422 !important;
+    border: 1px solid #da7422 !important;
+    color: white !important;
+  }
 
-    &:active {
-        background-color: #D06023 !important;
-        border: 1px solid #D06023 !important;
-        color: white !important;
-    }
-`
+  &:active {
+    background-color: #d06023 !important;
+    border: 1px solid #d06023 !important;
+    color: white !important;
+  }
+`;
 
 const Text = styled.span`
-    font-size: 18px;
-`
+  font-size: 18px;
+`;
 const EventLink = styled.a`
   text-decoration: none;
-  color: #DA7422;
+  color: #da7422;
 
   &:hover {
-    color: #D06023;
+    color: #d06023;
     text-decoration: underline;
   }
-`
+`;
 
 const ConfirmButton = styled(Button)`
   width: 90px;
   border-radius: 45px;
-  background-color: #DA7422;
+  background-color: #da7422;
   border: none;
   margin-right: 5px;
 
   &:hover {
-    background-color: #D06023;
+    background-color: #d06023;
   }
 
   &:active {
-    background-color: #D06023 !important;
+    background-color: #d06023 !important;
   }
-`
+`;
 
 const CancelButton = styled(Button)`
   width: 90px;
@@ -84,29 +86,33 @@ const CancelButton = styled(Button)`
     color: gray;
   }
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     background-color: #c3c9ce !important;
     color: gray !important;
   }
-`
+`;
 
-const ProductDisplay  = () => {
-  const {id} = useParams();
+const ProductDisplay = () => {
+  const { id } = useParams();
 
-  const [eventData, setEventData] = useState(null);
+  const [saleData, setSaleData] = useState([]);
 
   useEffect(() => {
     const fetchDataById = async () => {
       try {
-        const data = await fetchEventById(id);
-        setEventData(data);
+        const data = await fetchSaleById(id);
+        console.log(data);
+        console.log("in product display");
+        setSaleData(data);
       } catch (error) {
-        console.error('Error fetching product data:', error);
+        console.error("Error fetching product data:", error);
       }
     };
 
     fetchDataById();
   }, [id]);
+  const [loading, setLoading] = useState(false);
 
   const titleRef = useRef(null);
   const [status, setStatus] = useState(false);
@@ -123,10 +129,10 @@ const ProductDisplay  = () => {
 
   const confirmModal = async () => {
     try {
-      const response = await axios.post("http://localhost:8080/addevent/" + id)
-      setStatus(response.data.success)
-      setMessage(response.data.message)
-      toast()
+      const response = await axios.post("http://localhost:8080/addevent/" + id);
+      setStatus(response.data.success);
+      setMessage(response.data.message);
+      toast();
     } catch (error) {
       console.error("Insert failed:", error.response.data.error);
     }
@@ -137,82 +143,119 @@ const ProductDisplay  = () => {
   const navigate = useNavigate();
   const handleConfirmation = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/")
-      console.log(response)
+      const response = await axios.get("http://localhost:8080/");
+      console.log(response);
       response.data.valid ? setShowConfirmationModal(true) : navigate("/login");
     } catch (error) {
       console.error(error.response.data.error);
     }
-  }
-
+  };
+  console.log(saleData);
+  console.log(saleData.product);
   return (
     <div>
-    {eventData ? (
-      <div>
-        <div style={{ height: 300 }}>
-          <CoverImg src={eventData.img} alt="product" />
-        </div>
-        <Container style={{ marginTop: 30 }}>
-          <Grid container>
-            <Grid item xs={12} sm={6}>
-              <Title ref={titleRef}>{eventData.title}</Title>
-              <Text>{eventData.date} </Text> <Text> | </Text>
-              <Text>{eventData.time}</Text> <br />
-              <Text>{eventData.city}</Text><br/>
-              <Text>{eventData.address}</Text> <br />
-              <Text style={{color: '#da7422'}}>{eventData.price}</Text><br/><br />
-              <p style={{fontSize: '18px', textAlign: 'justify'}}>{eventData.description}</p><br/>
-              <EventLink href={eventData.link}><Text>{eventData.link}</Text></EventLink>
-            </Grid>
-            <Grid item xs={12} sm={6} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-start', padding: '10px' }}>
-              <StyledButton onClick={handleConfirmation}>
-                <BiCalendarPlus style={{ fontSize: '24px' }} />
-              </StyledButton>{' '}
-            </Grid>
-          </Grid>
-        </Container>
-
-         {/* Floating Toast */}
-        <Toast
-          show={showToast}
-          onClose={() => setShowToast(false)}
-          delay={3000}
-          autohide
-          bg={status ? "success" : "danger"}
+      {loading ? (
+        <div
+          className="spinner-container"
           style={{
-            position: 'fixed',
-            top: '15px',
-            right: '13px',
-            width: '200px', // Set the width as needed
-            zIndex: 1,
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
           }}
         >
-          <Toast.Body style={{ color: 'white' }}>{message}</Toast.Body>
-        </Toast>
+          <ClipLoader color="#333" loading={loading} size={50} />
+        </div>
+      ) : (
+        <div>
+          <div style={{ height: 300 }}>
+            <CoverImg src={saleData[0].image} alt={saleData.product} />
+          </div>
+          <Container style={{ marginTop: 30 }}>
+            <Grid container>
+              <Grid item xs={12} sm={6}>
+                <Title ref={titleRef}>{saleData.product}</Title>
+                <Text>{saleData.source} </Text> <Text> | </Text>
+                <Text>{saleData.expiry}</Text> <br />
+                <Text>{saleData.city}</Text>
+                <br />
+                <Text>{saleData.address}</Text> <br />
+                <Text style={{ color: "#da7422" }}>{saleData.price}</Text>
+                <br />
+                <br />
+                <p style={{ fontSize: "18px", textAlign: "justify" }}>
+                  {saleData.description}
+                </p>
+                <br />
+                <EventLink href={saleData.link}>
+                  <Text>{saleData.link}</Text>
+                </EventLink>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "flex-start",
+                  padding: "10px",
+                }}
+              >
+                <StyledButton onClick={handleConfirmation}>
+                  <FaBookmark style={{ fontSize: "24px" }} />
+                </StyledButton>{" "}
+              </Grid>
+            </Grid>
+          </Container>
 
-        {/* Confirmation Modal */}
-        <Modal show={showConfirmationModal} onHide={() => setShowConfirmationModal(false)} centered >
-          <Modal.Header closeButton>
-            <Modal.Title>Confirm Action</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            Are you sure you want to add this product? <br />
-            <Card.Title style={{ fontSize: 20, fontWeight: 'bold', color: '#DA7422' }}>{eventData.title}</Card.Title> on <span>{eventData.date}</span><span> | </span>
-            <span>{eventData.time}</span> - <span>{eventData.city}</span> <br />
-          </Modal.Body>
-          <Modal.Footer>
-            <CancelButton onClick={() => setShowConfirmationModal(false)}>
-              Cancel
-            </CancelButton>
-            <ConfirmButton onClick={confirmModal}>
-              Confirm
-            </ConfirmButton>
-          </Modal.Footer>
-        </Modal>
-      </div>
-    ) : (
-      <p>Loading...</p>
-    )}
+          {/* Floating Toast */}
+          <Toast
+            show={showToast}
+            onClose={() => setShowToast(false)}
+            delay={3000}
+            autohide
+            bg={status ? "success" : "danger"}
+            style={{
+              position: "fixed",
+              top: "15px",
+              right: "13px",
+              width: "200px", // Set the width as needed
+              zIndex: 1,
+            }}
+          >
+            <Toast.Body style={{ color: "white" }}>{message}</Toast.Body>
+          </Toast>
+
+          {/* Confirmation Modal */}
+          <Modal
+            show={showConfirmationModal}
+            onHide={() => setShowConfirmationModal(false)}
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Confirm Action</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Are you sure you want to add this product? <br />
+              <Card.Title
+                style={{ fontSize: 20, fontWeight: "bold", color: "#DA7422" }}
+              >
+                {saleData.title}
+              </Card.Title>{" "}
+              on <span>{saleData.date}</span>
+              <span> | </span>
+              <span>{saleData.time}</span> - <span>{saleData.city}</span> <br />
+            </Modal.Body>
+            <Modal.Footer>
+              <CancelButton onClick={() => setShowConfirmationModal(false)}>
+                Cancel
+              </CancelButton>
+              <ConfirmButton onClick={confirmModal}>Confirm</ConfirmButton>
+            </Modal.Footer>
+          </Modal>
+        </div>
+      )}
     </div>
   );
 };

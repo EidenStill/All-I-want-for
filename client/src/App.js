@@ -52,7 +52,7 @@ function App() {
             <Route path="/wishlist" element={<Wish />}/>
             <Route path="/swagger" element={<SwaggerViewer />} />
             <Route path="/search-results" element={<SearchResults />} />
-            <Route path="/Product" element={<Product />} />
+            <Route path="/Product/:id" element={<Product />} />
           </Routes>
         {/* </BrowserRouter> */}
       </SkeletonTheme>

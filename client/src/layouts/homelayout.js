@@ -12,7 +12,7 @@ function Home() {
       <NavBar />
       <div style={{ paddingTop: "61px" }}>
         <Row className="justify-content-md-center">
-          <Row noGutters>
+          <Row >
             <Col xs={1} className="mb-0" style={{ padding: '0', margin: '0' }} >
               <Sidebar />
             </Col>
