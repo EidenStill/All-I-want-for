@@ -18,9 +18,8 @@ Database: MySQL
 
 These are the necessary libraries that must be installed to run this application locally.
 
-> Note: All values are inferred as strings, and are parsed appropriately in the application. For example `Port` is a string value of 4000, it is parsed to its number counterpart in the application.
+> Note: Please go to the corresponding directories to install the libraries
 
-**Variables for `server/.env`**
 
 | Field       | Values                      | Required | Default     | Description                       |
 | ----------- | --------------------------- | -------- | ----------- | --------------------------------- |
