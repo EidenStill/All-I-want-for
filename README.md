@@ -40,7 +40,16 @@ These are the necessary libraries that must be installed to run this application
 | body-parser | `npm install body-parser`                   | Parsing incoming request bodies in Express.    |
 | React Router DOM | `npm install react-router-dom`                     |   Core libraries for building user interfaces with React.           |
 | Bootstrap | `npm install bootstrap`                    |   CSS framework for styling.           |
-|  | ``                   |         |
-|      | ``                   |              |
 
+| Server                 |                       | Description                       |
+| ---------------------- | --------------------- | --------------------------------- |
+|  concurrently   | `npm install concurrently`                    |     Running multiple commands concurrently                           |
+|  cookie-parser   | `npm install cookie-parser`                    |             Parsing cookies in Express applications                   |
+|  cors   | `npm install cors`                    |         Handling Cross-Origin Resource Sharing (CORS) in Express                       |
+|   express  | `npm install express`                    |  Back-end web framework for Node.js                              |
+|  express-session   | `npm install express-session`                    |    Session management in Express applications                            |
+|  mysql   | `npm install mysql`                    |    MySQL database driver                            |
+| mysql2    | `npm install mysql2`                    |       Another MySQL database driver                         |
+|  Express   | `npm install express`                    |        Back-end web framework for Node.js.                        |
+|  mdb-react-ui-kit   | `npm install mdb-react-ui-kit`                    |  MDB UI components for React.                             |
 
