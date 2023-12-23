@@ -1,10 +1,8 @@
 import axios from "axios";
 
 export const fetchsales = async () => {
-  console.log("this is running");
   try {
     const res = await axios.get("http://localhost:8000/getsales");
-    console.log("this", res.data)
     return res.data;
   } catch (err) {
     console.error(err);
