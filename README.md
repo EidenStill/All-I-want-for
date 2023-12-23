@@ -21,16 +21,26 @@ These are the necessary libraries that must be installed to run this application
 > Note: Please go to the corresponding directories to install the libraries
 
 
-| Field       | Values                      | Required | Default     | Description                       |
-| ----------- | --------------------------- | -------- | ----------- | --------------------------------- |
-| PORT        | `number`                    |          | `4000`      | Port number                       |
-| NODE_ENV    | `dev`, `test`, `production` |          |             | Running environment of the server |
-| DB_USERNAME | `string`                    |          | `postgres`  | Database Username for Postgres    |
-| DB_PASSWORD | `string`                    |          | ` `         | Password for Postgres             |
-| DB_HOSTNAME | `string`                    |          | `localhost` | Hostname for Postgres             |
-| DB_DATABASE | `string`                    | ✅       |             | Database name for Postgres        |
-| DB_PORT     | `number`                    |          | `5432`      | Postgres running port             |
+| Client                 |                       | Description                       |
+| ---------------------- | --------------------- | --------------------------------- |
+| React and React DOM    | `npm install react react-dom`                    |                                   |
+| React Bootstrap        | ``                    |                                   |
+| Material UI            | ``                    |                                   |
+| Formik                 | ``                    |                                   |
+| React Hook Form        | ``                    |                                   |
+| Yup                    | ``                    |                                   |
+| Font Awesome     | ``                   |              |
+| Styled Components    | `` |  |
+| Emotion | ``                   |     |
+| react-loading-skeleton | ``                     |              |
+| react-spinners | ``                    |              |
+| web-vitals | ``                   |         |
+| webfontloader     | ``                   |              |
+| Testing Libraries (React)    | `` |  |
+| body-parser | ``                   |     |
+|  | ``                     |              |
+|  | ``                    |              |
+|  | ``                   |         |
+|      | ``                   |              |
 
-## License
 
-[GNU General Public License v3.0](https://github.com/LaplaceXD/WakieWakie/blob/master/LICENSE)
