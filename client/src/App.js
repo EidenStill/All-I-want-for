@@ -9,7 +9,7 @@ import Signin from './layouts/signinlayout';
 import Wish from './layouts/wishlayout';
 import SearchResults from './layouts/searchlayout.js'
 import Product from './layouts/productlayout.js'
-
+import Add from './layouts/additemlayout.js'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -49,6 +49,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/" element={<Landing />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/add" element={<Add />} />
             <Route path="/wishlist" element={<Wish />}/>
             <Route path="/swagger" element={<SwaggerViewer />} />
             <Route path="/search-results" element={<SearchResults />} />

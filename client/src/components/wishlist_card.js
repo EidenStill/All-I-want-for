@@ -177,7 +177,7 @@ function ItemCard(item) {
   const confirmModal = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/addevent/" + item.id
+        "http://localhost:8000/addwish/", { item: item.product }
       );
       setStatus(response.data.success);
       setMessage(response.data.message);
@@ -198,7 +198,7 @@ function ItemCard(item) {
 
   const handleConfirmation = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/");
+      const response = await axios.get("http://localhost:8000/");
       console.log(response);
       response.data.valid ? setShowConfirmationModal(true) : navigate("/signin");
     } catch (error) {
@@ -279,7 +279,7 @@ function ItemCard(item) {
                     </CardButton>
                   </CardSection>
                   <Card.Body>
-                    <EventLink to={`/Event/${item.id}`}>
+                    <EventLink to={`/Product/${item.id}`}>
                       <CardTitle ref={titleRef}>{item.product}</CardTitle>
                     </EventLink>
                     <Card.Text id="cardContent" style={{ fontSize: 16 }}>

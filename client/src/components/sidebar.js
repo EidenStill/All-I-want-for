@@ -24,7 +24,7 @@ function Sidebar() {
                     </Nav.Link>
                 </Col>
                 <Col>
-                    <Nav.Link className="link fs-5" href="/about">
+                    <Nav.Link className="link fs-5" href="/add">
                         <FaPlus className="icon" /> Add
                     </Nav.Link>
                 </Col>

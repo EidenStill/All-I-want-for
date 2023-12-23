@@ -5,6 +5,11 @@ import mysql.connector
 from datetime import datetime
 import hashlib
 from selenium import webdriver
+import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 
 host = "localhost"
 user = "root"
@@ -106,12 +111,33 @@ def storeLZDSales():
             url = f"https://pages.lazada.com.ph/wow/gcp/route/lazada/ph/upr_1000345_lazada/channel/ph/upr-router/render?spm=a2o4l.home-ph.3964150330.14.bdf9ca18fg5L2q&wh_pid=/lazada/channel/ph/shopping-guide/lazflash&hybrid=1&data_prefetch=true&hide_h5_title=true&at_iframe=1&lzd_navbar_hidden=true&disable_pull_refresh=true&prefetch_replace=1&skuIds=3318565036,4107397292,3841347146,3265687560,3159562774,3952149634,3728238083"
             
             driver = webdriver.Chrome()
-
+            actions = ActionChains(driver)
             # Open the page
             driver.get(url)
 
             # Get the page source after waiting for some time (adjust as needed)
             driver.implicitly_wait(10)  # Wait for up to 10 seconds
+            response = driver.page_source
+
+            load_more_button = driver.find_element(By.XPATH, '//a[@class="button J_LoadMoreButton"]')
+            actions.move_to_element(load_more_button).click().perform()
+            # Set the maximum number of times to click the "Load More" button
+            max_clicks = 100
+
+            for click_count in range(max_clicks):
+                # Keep clicking the "Load More" button until it's no longer available
+                load_more_button = driver.find_element(By.XPATH, '//a[@class="button J_LoadMoreButton"]')
+
+                # Check if the "Load More" button is visible
+                if not load_more_button.is_displayed():
+                    break  # Exit the loop if the button is not visible
+    
+                actions.move_to_element(load_more_button).click().perform()
+
+                # Wait for some time to allow new items to load
+                time.sleep(10)  # Adjust the sleep time as needed
+
+            # Get the updated page source after clicking the "Load More" button
             response = driver.page_source
 
             # Close the browser

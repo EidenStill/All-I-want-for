@@ -129,7 +129,11 @@ const ProductDisplay = () => {
 
   const confirmModal = async () => {
     try {
-      const response = await axios.post("http://localhost:8080/addevent/" + id);
+      console.log("this name =     ", saleData.product)
+      const item = saleData.product
+      const response = await axios.post(
+        "http://localhost:8000/addwish/", { item: saleData.product }
+      );
       setStatus(response.data.success);
       setMessage(response.data.message);
       toast();
@@ -143,15 +147,13 @@ const ProductDisplay = () => {
   const navigate = useNavigate();
   const handleConfirmation = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/");
+      const response = await axios.get("http://localhost:8000/");
       console.log(response);
-      response.data.valid ? setShowConfirmationModal(true) : navigate("/login");
+      response.data.valid ? setShowConfirmationModal(true) : navigate("/signin");
     } catch (error) {
       console.error(error.response.data.error);
     }
   };
-  console.log(saleData);
-  console.log(saleData.product);
   return (
     <div>
       {loading ? (
@@ -248,11 +250,10 @@ const ProductDisplay = () => {
               <Card.Title
                 style={{ fontSize: 20, fontWeight: "bold", color: "#DA7422" }}
               >
-                {saleData.title}
+                {saleData.product}
               </Card.Title>{" "}
-              on <span>{saleData.date}</span>
+              on <span>{saleData.expiry}</span>
               <span> | </span>
-              <span>{saleData.time}</span> - <span>{saleData.city}</span> <br />
             </Modal.Body>
             <Modal.Footer>
               <CancelButton onClick={() => setShowConfirmationModal(false)}>

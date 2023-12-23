@@ -105,7 +105,6 @@ function checkLists() {
           return res.status(500).json(err);
         }
         if (data.length > 0) {
-          console.log("WHAT =     ", data)
           const notifs = data.slice(0, 2)// I want this to only be upto the second one at max
           const details = await notifs.map((item) => ({
             id: item.sale_id,
@@ -172,7 +171,6 @@ app.listen(port, () => {
 
 app.get("/", (req, res) => {
   if (req.session.user_email) {
-    console.log(req.session.user_email)
     return res.json({ valid: true, name: req.session.user_fname });
   } else {
     return res.json({ valid: false });
@@ -206,6 +204,19 @@ app.post('/register', async (req, res) => {
   }
 });
 
+app.post('/addwish', async (req, res) => {
+  const val = [req.body.item , req.session.user_id];
+  console.log(val)
+  const q = "INSERT IGNORE INTO wishlists (item_name, user_id) VALUES (?, ?)";
+  db.query(q, val, (err, data) => {
+    if (err) {
+      console.error('Error during insertion:', err);
+      return res.status(500).json(err);
+    }
+    return res.status(201).json({ success:true, message:"Successfully Added Wish"})
+  });
+});
+
 app.post('/login', async (req, res) => {
   // Handle login logic
   try {
@@ -221,6 +232,7 @@ app.post('/login', async (req, res) => {
       if (data.length > 0) {
         // User authenticated successfully
         const user = data[0]; // Assuming there is only one matching user
+        req.session.user_id = user.user_id
         req.session.user_email = user.user_email
         req.session.user_fname = user.user_fname
         req.session.user_lname = user.user_lname
@@ -315,7 +327,7 @@ app.get("/getsales", (req, res) => {
 app.get("/getsalesbyid/:id", (req, res) => {
   const salesId = req.params.id;
   let q = "SELECT * FROM sales WHERE sale_id = ?";
-
+  console.log("called")
   db.query(q, salesId, (err, data) => {
     if (err) {
       return res.status(500).json({ error: "Internal Server Error" });
