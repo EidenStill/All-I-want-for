@@ -7,9 +7,11 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Skeleton from 'react-loading-skeleton';
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 function NavBar() {
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [userName, setName] = useState('User')
@@ -32,7 +34,16 @@ function NavBar() {
   };
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    axios
+      .get("http://localhost:8000/logout")
+      .then((res) => {
+        if (res.data.success) {
+          navigate("/")
+          setIsLoggedIn(false);
+        }
+      })
+      .catch((err) => console.log(err));
+    
   };
 
   // Simulate loading delay
