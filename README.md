@@ -23,23 +23,23 @@ These are the necessary libraries that must be installed to run this application
 
 | Client                 |                       | Description                       |
 | ---------------------- | --------------------- | --------------------------------- |
-| React and React DOM    | `npm install react react-dom`                    |                                   |
-| React Bootstrap        | ``                    |                                   |
-| Material UI            | ``                    |                                   |
-| Formik                 | ``                    |                                   |
-| React Hook Form        | ``                    |                                   |
-| Yup                    | ``                    |                                   |
-| Font Awesome     | ``                   |              |
-| Styled Components    | `` |  |
-| Emotion | ``                   |     |
-| react-loading-skeleton | ``                     |              |
-| react-spinners | ``                    |              |
-| web-vitals | ``                   |         |
-| webfontloader     | ``                   |              |
-| Testing Libraries (React)    | `` |  |
-| body-parser | ``                   |     |
-|  | ``                     |              |
-|  | ``                    |              |
+| React and React DOM    | `npm install react react-dom`                    |  Core libraries for building user interfaces with React.                                 |
+| React Bootstrap        | `npm install react-bootstrap`                    |   React-specific Bootstrap components.                               |
+| Material UI            | `npm install @mui/material`                    |   Popular UI library with pre-built components and themes.                                |
+| Formik                 | `npm install formik`                    |     Form handling and validation library.                              |
+| React Hook Form        | `npm install react-hook-form`                    |  Performance-focused form handling library.                                 |
+| Yup                    | `npm install yup`                    |       Schema-based form validation library.                            |
+| Font Awesome     | `npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome`                   | Icon library with free and pro icons.             |
+| Styled Components    | `npm install styled-components` | CSS-in-JS styling library. |
+| Emotion | `npm install @emotion/react @emotion/styled`                   |  CSS-in-JS styling library.   |
+| react-loading-skeleton | `npm install react-loading-skeleton`                     |  Skeleton loaders for React.            |
+| react-spinners | `npm install react-spinners`                    |    Loading spinners for React.          |
+| web-vitals | `npm install web-vitals`                   |   Measuring web performance metrics.      |
+| webfontloader     | `npm install webfontloader`                   |    Dynamically loading web fonts.          |
+| Testing Libraries (React)    | `npm install @testing-library/react @testing-library/jest-dom @testing-library/user-event` |Testing React components.  |
+| body-parser | `npm install body-parser`                   | Parsing incoming request bodies in Express.    |
+| React Router DOM | `npm install react-router-dom`                     |   Core libraries for building user interfaces with React.           |
+| Bootstrap | `npm install bootstrap`                    |   CSS framework for styling.           |
 |  | ``                   |         |
 |      | ``                   |              |
 
